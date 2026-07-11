@@ -1,10 +1,9 @@
 using UnityEngine;
+using System.IO;
 
 public class MapLoader : MonoBehaviour
 {
     public GridLines grid;
-
-    public TextAsset csv;
 
     public GameObject wallPrefab;
     public GameObject playerPrefab;
@@ -12,20 +11,42 @@ public class MapLoader : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("LoadMap");
         LoadMap();
     }
 
     void LoadMap()
     {
-        string[] lines = csv.text.Split('\n');
+        string fileName = $"Stage{StageManager.CurrentStage:D2}.csv";
+
+        string path = Path.Combine(
+            Application.streamingAssetsPath,
+            "StageData",
+            fileName
+        );
+
+        if (!File.Exists(path))
+        {
+            Debug.LogError($"CSVが見つかりません : {path}");
+            return;
+        }
+
+        string csvText = File.ReadAllText(path);
+
+        string[] lines = csvText.Split('\n');
 
         for (int y = 0; y < lines.Length; y++)
         {
-            string[] cells = lines[y].Split(',');
+            string[] cells = lines[y].Trim().Split(',');
 
             for (int x = 0; x < cells.Length; x++)
             {
-                int id = int.Parse(cells[x]);
+                int id = 0; // デフォルトは床
+
+                if (!string.IsNullOrWhiteSpace(cells[x]))
+                {
+                    id = int.Parse(cells[x]);
+                }
 
                 Vector2 pos = grid.GetCellCenter(x, y);
 
