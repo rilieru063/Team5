@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapLoader
   grid: {fileID: 162937472}
-  wallPrefab: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  wallPrefab: {fileID: 8328626417247426214, guid: a11da68f15e9d1145acd027f979df81b, type: 3}
+  playerPrefab: {fileID: 44569236730935229, guid: 09ca889d114c65e4499e338acc5b486c, type: 3}
   goalPrefab: {fileID: 0}
 --- !u!114 &162937472
 MonoBehaviour:
