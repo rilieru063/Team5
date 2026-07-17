@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986129527154771097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MoveBox
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,9 +46,9 @@ GameObject:
   - component: {fileID: 4662900250549138615}
   - component: {fileID: 74580457719214711}
   - component: {fileID: 1605642358425044805}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,9 +184,9 @@ GameObject:
   - component: {fileID: 7345742530648984706}
   - component: {fileID: 237284245844845294}
   - component: {fileID: 6913468611321589682}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,9 +322,9 @@ GameObject:
   - component: {fileID: 8473148600640467006}
   - component: {fileID: 5238652141721850865}
   - component: {fileID: 5306332919390678183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,9 +460,9 @@ GameObject:
   - component: {fileID: 1787426610293605596}
   - component: {fileID: 8158278505717969583}
   - component: {fileID: 8185609876877790555}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

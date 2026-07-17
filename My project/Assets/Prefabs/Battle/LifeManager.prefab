@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 140668533056215417}
   - component: {fileID: 2930263165474277835}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Life3
-  m_TagString: Untagged
+  m_TagString: Life
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,9 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 133152595403181064}
   - component: {fileID: 8123515299011719495}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Life2
-  m_TagString: Untagged
+  m_TagString: Life
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,9 +192,9 @@ GameObject:
   m_Component:
   - component: {fileID: 977628932623162382}
   - component: {fileID: 8835171550065286282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LifeManager
-  m_TagString: Untagged
+  m_TagString: Life
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -244,9 +244,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6797496424210049719}
   - component: {fileID: 7308256764133357934}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Life1
-  m_TagString: Untagged
+  m_TagString: Life
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
