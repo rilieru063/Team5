@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdba2dcd5151add458cc300f24c9f6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridLines
-  width: 12
-  height: 7
+  width: 17
+  height: 12
   cellSize: 0.8
 --- !u!4 &162937473
 Transform:
