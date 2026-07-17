@@ -35,6 +35,7 @@ public class MovePlayer : MonoBehaviour
             return;
 
         SetGridPosition(nextX, nextY);
+        EnemyManager.Instance.MoveEnemies();
     }
 
     void UpdatePosition()
