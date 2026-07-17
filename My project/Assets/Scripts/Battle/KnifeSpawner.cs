@@ -9,15 +9,16 @@ public class KnifeSpawner : MonoBehaviour
     public float speed = 10f;
 
     // ナイフを1本生成
-    public void SpawnKnife(Vector3 position, float angle)
+    public void SpawnKnife(Vector3 position, float angle,float size,float delay)
     {
-        GameObject obj = Instantiate(knifeObject,position,Quaternion.Euler(0, 0, angle - 90));
+        GameObject obj = Instantiate(knifeObject,position,Quaternion.Euler(0, 0,angle - 90));
 
+        obj.transform.localScale = Vector3.one * size;
         Knife knife = obj.GetComponent<Knife>();
 
         if (knife != null)
         {
-            knife.SetMove(angle, speed);
+            knife.SetMove(angle,speed,delay);
         }
         else
         {
@@ -26,12 +27,12 @@ public class KnifeSpawner : MonoBehaviour
     }
 
     // 指定方向へ複数発射
-    public void SpawnKnifeToTarget(Vector3 spawnPosition,Vector3 targetPosition)
+    public void SpawnKnifeToTarget(Vector3 spawnPosition,Vector3 targetPosition,float size,float delay)
     {
         Vector2 direction = targetPosition - spawnPosition;
 
         float angle = Mathf.Atan2(direction.y,direction.x) * Mathf.Rad2Deg;
 
-        SpawnKnife(spawnPosition,angle);
+        SpawnKnife(spawnPosition,angle, size,delay);
     }
 }
