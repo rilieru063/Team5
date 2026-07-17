@@ -10,9 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] Borders borders;
     [SerializeField, Range(0f, 1f)] private float followStrength;//í«è]ÇÃíxÇÍ(0Ç…ãﬂÇ¢Ç∆í«è]Ç™íxÇÍÇÈ)
 
-    public static int playerHP = 10;
-
-    private void start()
+    private void Start()
     {
 
     }
@@ -27,12 +25,11 @@ public class Player : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, mousePos, followStrength);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            playerHP -= 1;
-            Debug.Log(playerHP);
+            LifeManager.Instance.Damage(1);
         }
     }
 }

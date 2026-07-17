@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Box
+  - Life
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,8 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
+  - Box
+  - Life
   - 
   - 
   - 
