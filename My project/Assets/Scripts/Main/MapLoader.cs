@@ -1,13 +1,27 @@
 using UnityEngine;
 using System.IO;
 
+public enum TileType
+{
+    Floor = 0,
+    Wall = 1,
+    Player = 2,
+    Goal = 3,
+}
+
 public class MapLoader : MonoBehaviour
 {
+    public static MapLoader Instance;
+    public int[,] mapData;
     public GridLines grid;
-
     public GameObject wallPrefab;
     public GameObject playerPrefab;
     public GameObject goalPrefab;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -34,10 +48,14 @@ public class MapLoader : MonoBehaviour
 
         string csvText = File.ReadAllText(path);
 
-        string[] lines = csvText.Split('\n');
+        string[] lines = csvText.Replace("\r", "").Split('\n', System.StringSplitOptions.RemoveEmptyEntries);
+
+        mapData = new int[lines[0].Trim().Split(',').Length, lines.Length];
 
         for (int y = 0; y < lines.Length; y++)
         {
+            int mapY = lines.Length - 1 - y;
+
             string[] cells = lines[y].Trim().Split(',');
 
             for (int x = 0; x < cells.Length; x++)
@@ -49,22 +67,24 @@ public class MapLoader : MonoBehaviour
                     id = int.Parse(cells[x]);
                 }
 
-                Vector2 pos = grid.GetCellCenter(x, y);
+                mapData[x, mapY] = id;
 
-                switch (id)
+                Vector2 pos = grid.GetCellCenter(x, mapY);
+
+                switch ((TileType)id)
                 {
-                    case 1:
+                    case TileType.Wall:
                         Instantiate(wallPrefab, pos, Quaternion.identity);
                         break;
 
-                    case 2:
+                    case TileType.Player:
                         GameObject player = Instantiate(playerPrefab, pos, Quaternion.identity);
 
                         MovePlayer move = player.GetComponent<MovePlayer>();
-                        move.SetGridPosition(x, y);
+                        move.SetGridPosition(x, mapY);
                         break;
 
-                    case 3:
+                    case TileType.Goal:
                         Instantiate(goalPrefab, pos, Quaternion.identity);
                         break;
                 }
