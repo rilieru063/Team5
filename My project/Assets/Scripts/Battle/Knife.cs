@@ -10,9 +10,6 @@ public class Knife : MonoBehaviour
 
     public float lifeTime = 5f;
 
-    [Header("ŠJn‚Ü‚Å‚Ì‘Ò‹@ŠÔ")]
-    public float startDelay = 1f;
-
     private bool canMove = false;
 
     void Awake()
@@ -25,20 +22,20 @@ public class Knife : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    public void SetMove(float angle, float spd)
+    public void SetMove(float angle, float spd,float delay)
     {
         float rad = angle * Mathf.Deg2Rad;// Šp“x‚©‚ç•ûŒü‚ğì¬
 
         direction = new Vector2(Mathf.Cos(rad),Mathf.Sin(rad)).normalized;
         speed = spd;
 
-        StartCoroutine(StartMoving());
+        StartCoroutine(StartMoving(delay));
     }
 
-    IEnumerator StartMoving()
+    IEnumerator StartMoving(float delay)
     {
-        yield return new WaitForSeconds(startDelay);// w’è•b”’â~
-
+        yield return new WaitForSeconds(delay); ;// w’è•b”’â~
+            
         canMove = true;
     }
 
