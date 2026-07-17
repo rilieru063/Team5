@@ -7,6 +7,7 @@ public enum TileType
     Wall = 1,
     Player = 2,
     Goal = 3,
+    Enemy = 4,
 }
 
 public class MapLoader : MonoBehaviour
@@ -17,6 +18,7 @@ public class MapLoader : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject playerPrefab;
     public GameObject goalPrefab;
+    public GameObject enemyPrefab;
 
     void Awake()
     {
@@ -86,6 +88,10 @@ public class MapLoader : MonoBehaviour
 
                     case TileType.Goal:
                         Instantiate(goalPrefab, pos, Quaternion.identity);
+                        break;
+
+                    case TileType.Enemy:
+                        Instantiate(enemyPrefab, pos, Quaternion.identity);
                         break;
                 }
             }
