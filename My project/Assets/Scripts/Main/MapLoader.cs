@@ -91,7 +91,10 @@ public class MapLoader : MonoBehaviour
                         break;
 
                     case TileType.Enemy:
-                        Instantiate(enemyPrefab, pos, Quaternion.identity);
+                        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+
+                        Enemy enemyScript = enemy.GetComponent<Enemy>();
+                        enemyScript.SetGridPosition(x, mapY);
                         break;
                 }
             }
