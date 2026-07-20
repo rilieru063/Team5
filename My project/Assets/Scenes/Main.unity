@@ -451,9 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c1f474b30b2ec49894bde5ba9922ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  enemies:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!4 &1141063588
 Transform:
   m_ObjectHideFlags: 0

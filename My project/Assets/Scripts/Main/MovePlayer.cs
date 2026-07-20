@@ -8,6 +8,9 @@ public class MovePlayer : MonoBehaviour
     private int gridX;
     private int gridY;
 
+    public int GridX => gridX;
+    public int GridY => gridY;
+
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();

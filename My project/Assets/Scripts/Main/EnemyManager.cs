@@ -5,15 +5,17 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public List<Enemy> enemies = new List<Enemy>();
+    private List<Enemy> enemies = new List<Enemy>();
 
     void Awake()
     {
         Instance = this;
+        enemies.Clear();
     }
 
     public void RegisterEnemy(Enemy enemy)
     {
+        Debug.Log($"RegisterEnemy : {enemy}");
         enemies.Add(enemy);
     }
 
@@ -21,8 +23,14 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (Enemy enemy in enemies)
         {
+            if (enemy == null)
+            {
+                Debug.LogError("Enemy‚ªnull‚Å‚·");
+                continue;
+            }
+
             enemy.MoveEnemy();
-            enemy.MoveEnemy();   // 2ƒ}ƒXˆÚ“®
+            enemy.MoveEnemy();
         }
     }
 }
