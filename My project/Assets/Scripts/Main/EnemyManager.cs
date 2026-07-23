@@ -7,6 +7,10 @@ public class EnemyManager : MonoBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
 
+    public List<Enemy> Enemies
+    {
+        get { return enemies; }
+    }
     void Awake()
     {
         Instance = this;
