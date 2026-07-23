@@ -29,7 +29,6 @@ public class MapLoader : MonoBehaviour
     {
         Debug.Log("LoadMap");
         LoadMap();
-
     }
 
     void LoadMap()
@@ -83,7 +82,7 @@ public class MapLoader : MonoBehaviour
                         GameObject player = Instantiate(playerPrefab, pos, Quaternion.identity);
 
                         MovePlayer move = player.GetComponent<MovePlayer>();
-                        move.SetGridPosition(x, mapY);
+                        move.SetStartPosition(x, mapY);
                         break;
 
                     case TileType.Goal:
@@ -94,7 +93,7 @@ public class MapLoader : MonoBehaviour
                         GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
 
                         Enemy enemyScript = enemy.GetComponent<Enemy>();
-                        enemyScript.SetGridPosition(x, mapY);
+                        enemyScript.SetStartPosition(x, mapY);
                         break;
                 }
             }

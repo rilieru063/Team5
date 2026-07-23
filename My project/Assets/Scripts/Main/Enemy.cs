@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     private int gridX;
     private int gridY;
 
+    private int startX;
+    private int startY;
+
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
@@ -20,6 +23,19 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+    }
+
+    public void SetStartPosition(int x, int y)
+    {
+        startX = x;
+        startY = y;
+
+        SetGridPosition(x, y);
+    }
+
+    public void ResetPosition()
+    {
+        SetGridPosition(startX, startY);
     }
 
     public void SetGridPosition(int x, int y)
@@ -50,7 +66,9 @@ public class Enemy : MonoBehaviour
         int[] dx = { 1, -1, 0, 0 };
         int[] dy = { 0, 0, 1, -1 };
 
+        bool found = false;
         Vector2Int goal = Vector2Int.zero;
+
         while (queue.Count > 0)
         {
             Vector2Int current = queue.Dequeue();
@@ -76,16 +94,33 @@ public class Enemy : MonoBehaviour
                 parent[nextX, nextY] = current;
                 if (nextX == player.GridX && nextY == player.GridY)
                 {
+                    parent[nextX, nextY] = current;
                     goal = new Vector2Int(nextX, nextY);
+                    found = true;
                     break;
                 }
 
                 queue.Enqueue(new Vector2Int(nextX, nextY));
             }
 
-            if (goal != Vector2Int.zero)
+            if (found)
                 break;
         }
+        // プレイヤーが見つからなかったら終了
+        if (!found)
+            return;
+
+        Vector2Int step = goal;
+
+        // 敵の隣のマスまで戻る
+        while (parent[step.x, step.y] != new Vector2Int(gridX, gridY))
+        {
+            step = parent[step.x, step.y];
+        }
+
+        // 1マス移動
+        Debug.Log($"Enemy Move : ({step.x}, {step.y})");
+        SetGridPosition(step.x, step.y);
     }
 }
 

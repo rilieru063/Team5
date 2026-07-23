@@ -8,6 +8,9 @@ public class MovePlayer : MonoBehaviour
     private int gridX;
     private int gridY;
 
+    private int startX;
+    private int startY;
+
     public int GridX => gridX;
     public int GridY => gridY;
 
@@ -50,6 +53,19 @@ public class MovePlayer : MonoBehaviour
         Debug.DrawLine(pos + Vector2.up * 0.1f, pos + Vector2.down * 0.1f, Color.red, 100);
 
         transform.position = pos;
+    }
+
+    public void SetStartPosition(int x, int y)
+    {
+        startX = x;
+        startY = y;
+
+        SetGridPosition(x, y);
+    }
+
+    public void ResetPosition()
+    {
+        SetGridPosition(startX, startY);
     }
 
     public void SetGridPosition(int x, int y)
