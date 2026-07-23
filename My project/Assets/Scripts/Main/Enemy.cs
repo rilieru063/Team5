@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
 
             if (goal != Vector2Int.zero)
                 break;
-            }
         }
     }
 }
+
