@@ -89,7 +89,7 @@ public class MovePlayer : MonoBehaviour
                 GridY == enemy.GridY)
             {
                 Debug.Log("Game Over!");
-                SceneManager.LoadScene("Battle");
+                SceneManager.LoadScene("Battle_1");
             }
         }
     }
