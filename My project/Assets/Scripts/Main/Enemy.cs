@@ -1,6 +1,7 @@
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour
 
     private int gridX;
     private int gridY;
+
+    public int GridX => gridX;
+    public int GridY => gridY;
 
     private int startX;
     private int startY;
@@ -48,6 +52,17 @@ public class Enemy : MonoBehaviour
 
         transform.position = grid.GetCellCenter(gridX, gridY);
     }
+
+    void CheckPlayerCollision()
+    {
+        if (gridX == player.GridX &&
+            gridY == player.GridY)
+        {
+            Debug.Log("Game Over!");
+            SceneManager.LoadScene("Battle");
+        }
+    }
+
     public void MoveEnemy()
     {
         bool[,] visited = new bool[
@@ -119,8 +134,11 @@ public class Enemy : MonoBehaviour
         }
 
         // 1マス移動
-        Debug.Log($"Enemy Move : ({step.x}, {step.y})");
+        //Debug.Log($"Enemy Move : ({step.x}, {step.y})");
         SetGridPosition(step.x, step.y);
+
+        // プレイヤーと重なったらゲームオーバー
+        CheckPlayerCollision();
     }
 }
 
