@@ -36,7 +36,7 @@ public class BossPatternManager : MonoBehaviour
             knifeSpawner.SpawnKnife(new Vector3(5, 2, 0), -135,0.25f, 0.5f);
 
             // Ÿ‚Ìƒ‹[ƒv‚Ü‚Å‘Ò‹@
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
     }
 
