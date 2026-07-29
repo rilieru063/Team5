@@ -1,5 +1,6 @@
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.SceneManagement;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -49,8 +50,8 @@ public class MovePlayer : MonoBehaviour
         //transform.position = grid.GetCellCenter(gridX, gridY);
         Vector2 pos = grid.GetCellCenter(gridX, gridY);
 
-        Debug.DrawLine(pos + Vector2.left * 0.1f, pos + Vector2.right * 0.1f, Color.red, 100);
-        Debug.DrawLine(pos + Vector2.up * 0.1f, pos + Vector2.down * 0.1f, Color.red, 100);
+        //Debug.DrawLine(pos + Vector2.left * 0.1f, pos + Vector2.right * 0.1f, Color.red, 100);
+        //Debug.DrawLine(pos + Vector2.up * 0.1f, pos + Vector2.down * 0.1f, Color.red, 100);
 
         transform.position = pos;
     }
@@ -77,5 +78,19 @@ public class MovePlayer : MonoBehaviour
             grid = FindFirstObjectByType<GridLines>();
 
         UpdatePosition();
+        CheckEnemyCollision();
+    }
+
+    void CheckEnemyCollision()
+    {
+        foreach (Enemy enemy in EnemyManager.Instance.Enemies)
+        {
+            if (GridX == enemy.GridX &&
+                GridY == enemy.GridY)
+            {
+                Debug.Log("Game Over!");
+                SceneManager.LoadScene("Battle");
+            }
+        }
     }
 }
