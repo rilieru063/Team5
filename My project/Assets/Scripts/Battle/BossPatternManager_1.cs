@@ -24,7 +24,7 @@ public class BossPatternManager_1 : MonoBehaviour
             int pattern;
             do
             {
-                pattern = Random.Range(0, 5);
+                pattern = Random.Range(0,5);
             }
             while (pattern == lastPattern);
 
@@ -68,7 +68,7 @@ public class BossPatternManager_1 : MonoBehaviour
         knifeSpawner.SpawnKnife(new Vector3(5, -4, 0), -180, 0.5f, 0.5f);
     }
 
-    // その3 全方向
+    // その3 全方向から
     void Pattern3()
     {
         SpawnSurroundKnives(8);
@@ -93,7 +93,7 @@ public class BossPatternManager_1 : MonoBehaviour
     {
         float radius = 6f;
 
-        // 集まる中心
+        // 中心
         Vector3 targetPosition = player.position;
 
         for (int i = 0; i < count; i++)
