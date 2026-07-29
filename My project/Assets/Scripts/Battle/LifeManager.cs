@@ -5,7 +5,7 @@ public class LifeManager : MonoBehaviour
     public static LifeManager Instance;
 
     public GameObject[] LifeObjects;
-    public int life = 3;
+    public int life = 5;
 
     void Awake()
     {

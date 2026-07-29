@@ -515,7 +515,7 @@ PrefabInstance:
       objectReference: {fileID: 1936167289}
     - target: {fileID: 9048715618691380894, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: m_Name
-      value: BossPatternManager
+      value: BossPatternManager_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
