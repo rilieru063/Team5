@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
             gridY == player.GridY)
         {
             Debug.Log("Game Over!");
-            SceneManager.LoadScene("Battle");
+            SceneManager.LoadScene("Battle_1");
         }
     }
 
