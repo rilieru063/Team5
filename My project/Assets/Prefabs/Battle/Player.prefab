@@ -111,7 +111,7 @@ MonoBehaviour:
     xMax: 2.6
     yMin: -4.25
     yMax: 0.25
-  followStrength: 0.005
+  followStrength: 0.0075
 --- !u!50 &6547204165130624086
 Rigidbody2D:
   serializedVersion: 5

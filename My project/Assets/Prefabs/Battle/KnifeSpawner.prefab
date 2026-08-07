@@ -44,7 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbf772d7716943e4d8d44407bee7bb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KnifeSpawner
-  KnifeObject: {fileID: 0}
-  delay: 2
-  speed: 10
-  direction: {x: 1, y: 0}
+  knifeObject: {fileID: 4854609347654030778, guid: 6046995b4f78b024a9fd782c63417361, type: 3}
+  speed: 50
