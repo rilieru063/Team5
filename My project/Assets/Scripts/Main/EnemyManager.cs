@@ -34,7 +34,9 @@ public class EnemyManager : MonoBehaviour
             }
 
             enemy.MoveEnemy();
+            Life.Instance.lifeminus(2);
             enemy.MoveEnemy();
+            Life.Instance.lifeminus(2);
         }
     }
 }
