@@ -84,13 +84,16 @@ public class MovePlayer : MonoBehaviour
 
     void CheckEnemyCollision()
     {
+        if (DebugMode.Instance.invincible)
+            return;
+
         foreach (Enemy enemy in EnemyManager.Instance.Enemies)
         {
             if (GridX == enemy.GridX &&
                 GridY == enemy.GridY)
             {
                 Debug.Log("Game Over!");
-                SceneManager.LoadScene("Battle_1");
+                SceneManager.LoadScene("Battle");
             }
         }
     }
@@ -106,6 +109,7 @@ public class MovePlayer : MonoBehaviour
             GridY == goal.GridY)
         {
             Debug.Log("Stage Clear!");
+            Life.Instance.lifedefinition(1);
             SceneManager.LoadScene("Battle");
         }
     }
