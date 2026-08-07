@@ -16,4 +16,10 @@ public class Life : MonoBehaviour
         lifepoint -= minus;
         Debug.Log(lifepoint);
     }
+
+    public void lifedefinition(int num)
+    {
+        lifepoint = num;
+        Debug.Log(lifepoint);
+    }
 }
