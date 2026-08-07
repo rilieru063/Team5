@@ -55,11 +55,14 @@ public class Enemy : MonoBehaviour
 
     void CheckPlayerCollision()
     {
+        if (DebugMode.Instance.invincible)
+            return;
+
         if (gridX == player.GridX &&
             gridY == player.GridY)
         {
             Debug.Log("Game Over!");
-            SceneManager.LoadScene("Battle_1");
+            SceneManager.LoadScene("Battle");
         }
     }
 

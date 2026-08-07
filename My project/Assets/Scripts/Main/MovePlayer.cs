@@ -79,6 +79,7 @@ public class MovePlayer : MonoBehaviour
 
         UpdatePosition();
         CheckEnemyCollision();
+        CheckGoal();
     }
 
     void CheckEnemyCollision()
@@ -91,6 +92,21 @@ public class MovePlayer : MonoBehaviour
                 Debug.Log("Game Over!");
                 SceneManager.LoadScene("Battle_1");
             }
+        }
+    }
+
+    void CheckGoal()
+    {
+        Goal goal = FindFirstObjectByType<Goal>();
+
+        if (goal == null)
+            return;
+
+        if (GridX == goal.GridX &&
+            GridY == goal.GridY)
+        {
+            Debug.Log("Stage Clear!");
+            SceneManager.LoadScene("Battle");
         }
     }
 }

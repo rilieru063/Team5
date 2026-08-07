@@ -86,7 +86,10 @@ public class MapLoader : MonoBehaviour
                         break;
 
                     case TileType.Goal:
-                        Instantiate(goalPrefab, pos, Quaternion.identity);
+                        GameObject goal = Instantiate(goalPrefab, pos, Quaternion.identity);
+
+                        Goal goalScript = goal.GetComponent<Goal>();
+                        goalScript.SetGridPosition(x, mapY);
                         break;
 
                     case TileType.Enemy:
