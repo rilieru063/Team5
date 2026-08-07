@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BossPatternManager_1 : MonoBehaviour
+public class BossPatternManager : MonoBehaviour
 {
     public KnifeSpawner knifeSpawner;
     public Transform player;
