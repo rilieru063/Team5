@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf614a949834bd48b2dfd8e0f34c9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossPatternManager
-  knifeSpawner: {fileID: 0}
-  player: {fileID: 0}
+  knifeSpawner: {fileID: 4904597358550206666, guid: df869fd81d44f0c44b4fac8a9562b7d1, type: 3}
+  player: {fileID: 9217089704582786128, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}

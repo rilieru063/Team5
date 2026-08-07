@@ -1,11 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
     public static LifeManager Instance;
 
-    public GameObject[] LifeObjects;
-    public int life = 5;
+    public Image hpBar;
+
+    public int maxLife = 100;
+    public int life;
 
     void Awake()
     {
@@ -14,26 +17,23 @@ public class LifeManager : MonoBehaviour
 
     void Start()
     {
+        life = maxLife;
         UpdateLifeUI();
     }
 
-    public void Damage(int Damage)
+    public void Damage(int damage)
     {
-        life -= Damage;
+        life -= damage;
 
-        if(life < 0 )
+        if (life < 0)
             life = 0;
 
         UpdateLifeUI();
-
-        Debug.Log("Œ»Ý‚Ìƒ‰ƒCƒtF" + life);
     }
 
     void UpdateLifeUI()
     {
-        for (int i = 0; i < LifeObjects.Length; i++)
-        {
-            LifeObjects[i].SetActive(i < life);
-        }
+        hpBar.fillAmount = (float)life / maxLife;
     }
 }
+
