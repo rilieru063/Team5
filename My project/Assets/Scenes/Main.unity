@@ -494,6 +494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd39bf80fcec5640bf0baecc631c8fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemManager
+  itemTrapPrefab: {fileID: 3278430075302692051, guid: b9079c1144145154b945ff251241d725, type: 3}
 --- !u!1 &1870288497
 GameObject:
   m_ObjectHideFlags: 0

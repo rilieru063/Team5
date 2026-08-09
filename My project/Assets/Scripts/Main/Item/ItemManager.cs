@@ -11,6 +11,10 @@ public enum ItemType
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
+    private MovePlayer player;
+    private GridLines grid;
+
+    public GameObject itemTrapPrefab;
 
     private ItemType currentItem = ItemType.None;
     //アイテムA
@@ -32,6 +36,11 @@ public class ItemManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+    }
+    void Start()
+    {
+        player = FindFirstObjectByType<MovePlayer>();
+        grid = FindFirstObjectByType<GridLines>();
     }
 
     public bool HasItem()
@@ -110,7 +119,24 @@ public class ItemManager : MonoBehaviour
                 break;
 
             case ItemType.ItemC:
-                // アイテムCの効果
+                Vector2 pos = grid.GetCellCenter(
+                    player.GridX,
+                    player.GridY
+                );
+
+                GameObject trap = Instantiate(
+                    itemTrapPrefab,
+                    pos,
+                    Quaternion.identity
+                );
+
+                ItemTrap trapScript = trap.GetComponent<ItemTrap>();
+
+                trapScript.SetGridPosition(
+                    player.GridX,
+                    player.GridY
+                );
+
                 break;
         }
 

@@ -30,14 +30,15 @@ public class EnemyManager : MonoBehaviour
 
         foreach (Enemy enemy in enemies)
         {
-            if (enemy == null)
+            if (enemy.IsStopped())
             {
-                Debug.LogError("Enemy‚ªnull‚Å‚·");
+                enemy.CountStopTurn();
                 continue;
             }
 
             enemy.MoveEnemy();
             Life.Instance.lifeminus(1);
+
             enemy.MoveEnemy();
             Life.Instance.lifeminus(1);
         }

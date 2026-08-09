@@ -23,6 +23,12 @@ public class Enemy : MonoBehaviour
     public int PreviousX => previousX;
     public int PreviousY => previousY;
 
+    private int stopTurn = 0;
+    public bool IsStopped()
+    {
+        return stopTurn > 0;
+    }
+
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
@@ -80,6 +86,27 @@ public class Enemy : MonoBehaviour
         Debug.Log("Game Over!");
         SceneManager.LoadScene("Battle");
     }
+    void CheckTrapCollision()
+    {
+        ItemTrap[] traps = FindObjectsByType<ItemTrap>(
+            FindObjectsSortMode.None
+        );
+
+        foreach (ItemTrap trap in traps)
+        {
+            if (gridX == trap.GridX &&
+                gridY == trap.GridY)
+            {
+                Debug.Log("EnemyがTrapを踏んだ！");
+
+                StopEnemy(5);
+
+                Destroy(trap.gameObject);
+
+                return;
+            }
+        }
+    }
 
     public void KnockBack(int directionX, int directionY)
     {
@@ -105,9 +132,25 @@ public class Enemy : MonoBehaviour
             SetGridPosition(nextX, nextY);
         }
     }
+    public void StopEnemy(int turn)
+    {
+        stopTurn = turn;
+    }
+    public void CountStopTurn()
+    {
+        if (stopTurn <= 0)
+            return;
+
+        stopTurn--;
+
+        Debug.Log($"Enemy停止中 残り{stopTurn}歩");
+    }
 
     public void MoveEnemy()
     {
+        if (stopTurn > 0)
+            return;
+
         bool[,] visited = new bool[
             MapLoader.Instance.mapData.GetLength(0),
             MapLoader.Instance.mapData.GetLength(1)
@@ -181,7 +224,8 @@ public class Enemy : MonoBehaviour
         // 1マス移動
         //Debug.Log($"Enemy Move : ({step.x}, {step.y})");
         SetGridPosition(step.x, step.y);
-
+        // ItemTrapと重なったか
+        CheckTrapCollision();
         // プレイヤーと重なったらゲームオーバー
         CheckPlayerCollision();
     }
