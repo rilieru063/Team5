@@ -40,8 +40,6 @@ public class EnemyManager : MonoBehaviour
             Life.Instance.lifeminus(1);
             enemy.MoveEnemy();
             Life.Instance.lifeminus(1);
-            Debug.Log(ItemManager.Instance.KBA);
-            Debug.Log(ItemManager.Instance.KBT);
         }
 
         ItemManager.Instance.EnemyTurn();

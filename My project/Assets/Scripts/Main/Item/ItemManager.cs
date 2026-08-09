@@ -13,11 +13,21 @@ public class ItemManager : MonoBehaviour
     public static ItemManager Instance;
 
     private ItemType currentItem = ItemType.None;
+    //アイテムA
     private bool knockbackActive = false;
     private int knockbackTurn = 0;
-
-    public bool KBA => knockbackActive;
-    public int KBT => knockbackTurn;
+    public bool IsKnockbackActive()
+    {
+        return knockbackActive;
+    }
+    //アイテムB
+    private bool doubleMoveActive = false;
+    private int doubleMoveCount = 0;
+    private int moveStep = 0;
+    public bool IsDoubleMoveActive()
+    {
+        return doubleMoveActive;
+    }
 
     void Awake()
     {
@@ -50,6 +60,21 @@ public class ItemManager : MonoBehaviour
             knockbackActive = false;
         }
     }
+    public bool DoubleMoveStep()
+    {
+        moveStep++;
+
+        if (moveStep < 2)
+            return false;
+
+        moveStep = 0;
+        doubleMoveCount--;
+
+        if (doubleMoveCount <= 0)
+            doubleMoveActive = false;
+
+        return true;
+    }
 
     public void UseItem()
     {
@@ -66,7 +91,9 @@ public class ItemManager : MonoBehaviour
                 break;
 
             case ItemType.ItemB:
-                // アイテムBの効果
+                doubleMoveActive = true;
+                doubleMoveCount = 3;
+                moveStep = 0;
                 break;
 
             case ItemType.ItemC:

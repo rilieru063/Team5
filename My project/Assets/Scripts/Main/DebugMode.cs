@@ -7,7 +7,7 @@ public class DebugMode : MonoBehaviour
 
     [Header("デバッグ設定")]
     public bool Alldebugmode = false;  //全てのデバッグ機能
-    public bool debug = false;         //デバッグ機能
+    public bool reset = false;         //デバッグ機能
     public bool showEnemyPath = false; //敵の経路表示
     public bool invincible = false;    //無敵
 
@@ -21,12 +21,12 @@ public class DebugMode : MonoBehaviour
     {
         if(Alldebugmode == true)
         {
-            debug = Alldebugmode;
+            reset = Alldebugmode;
             showEnemyPath = Alldebugmode;
             invincible = Alldebugmode;
         }
 
-        if (!debug)
+        if (!reset)
             return;
 
         if (Input.GetKeyDown(KeyCode.R))
