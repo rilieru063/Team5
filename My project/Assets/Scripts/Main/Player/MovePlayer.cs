@@ -28,9 +28,10 @@ public class MovePlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D)) Move(1, 0);
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ItemManager.Instance.UseItem();
-            // アイテム使用後に敵を動かす
-            EnemyManager.Instance.MoveEnemies();
+            if (ItemManager.Instance.UseItem())
+            {
+                EnemyManager.Instance.MoveEnemies();
+            }
         }
     }
 

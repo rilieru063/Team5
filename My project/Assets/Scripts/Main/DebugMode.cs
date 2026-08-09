@@ -31,6 +31,7 @@ public class DebugMode : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
+            ItemManager.Instance.ResetItem();
             MovePlayer player = FindFirstObjectByType<MovePlayer>();
             player.ResetPosition();
 
