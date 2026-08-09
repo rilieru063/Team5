@@ -48,7 +48,18 @@ public class MovePlayer : MonoBehaviour
             return;
 
         SetGridPosition(nextX, nextY);
-        EnemyManager.Instance.MoveEnemies();
+
+        if (ItemManager.Instance.IsDoubleMoveActive())
+        {
+            if (ItemManager.Instance.DoubleMoveStep())
+            {
+                EnemyManager.Instance.MoveEnemies();
+            }
+        }
+        else
+        {
+            EnemyManager.Instance.MoveEnemies();
+        }
     }
 
     void UpdatePosition()

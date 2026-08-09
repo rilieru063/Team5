@@ -17,6 +17,12 @@ public class Enemy : MonoBehaviour
     private int startX;
     private int startY;
 
+    private int previousX;
+    private int previousY;
+
+    public int PreviousX => previousX;
+    public int PreviousY => previousY;
+
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
@@ -55,14 +61,48 @@ public class Enemy : MonoBehaviour
 
     void CheckPlayerCollision()
     {
+        if (gridX != player.GridX ||
+            gridY != player.GridY)
+            return;
+
+        if (ItemManager.Instance.IsKnockbackActive())
+        {
+            int dx = gridX - previousX;
+            int dy = gridY - previousY;
+
+            KnockBack(-dx, -dy);
+            return;
+        }
+
         if (DebugMode.Instance.invincible)
             return;
 
-        if (gridX == player.GridX &&
-            gridY == player.GridY)
+        Debug.Log("Game Over!");
+        SceneManager.LoadScene("Battle");
+    }
+
+    public void KnockBack(int directionX, int directionY)
+    {
+        for (int i = 0; i < 5; i++)
         {
-            Debug.Log("Game Over!");
-            SceneManager.LoadScene("Battle");
+            int nextX = gridX + directionX;
+            int nextY = gridY + directionY;
+
+            // マップ外なら終了
+            if (nextX < 0 || nextY < 0 ||
+                nextX >= MapLoader.Instance.mapData.GetLength(0) ||
+                nextY >= MapLoader.Instance.mapData.GetLength(1))
+            {
+                break;
+            }
+
+            // 壁なら終了
+            if (MapLoader.Instance.mapData[nextX, nextY] == (int)TileType.Wall)
+            {
+                break;
+            }
+
+            SetGridPosition(nextX, nextY);
         }
     }
 
@@ -112,7 +152,6 @@ public class Enemy : MonoBehaviour
                 parent[nextX, nextY] = current;
                 if (nextX == player.GridX && nextY == player.GridY)
                 {
-                    parent[nextX, nextY] = current;
                     goal = new Vector2Int(nextX, nextY);
                     found = true;
                     break;
@@ -135,6 +174,9 @@ public class Enemy : MonoBehaviour
         {
             step = parent[step.x, step.y];
         }
+
+        previousX = gridX;
+        previousY = gridY;
 
         // 1マス移動
         //Debug.Log($"Enemy Move : ({step.x}, {step.y})");
