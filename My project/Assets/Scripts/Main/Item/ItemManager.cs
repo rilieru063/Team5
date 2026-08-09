@@ -38,6 +38,19 @@ public class ItemManager : MonoBehaviour
     {
         return currentItem != ItemType.None;
     }
+    public void ResetItem()
+    {
+        currentItem = ItemType.None;
+
+        knockbackActive = false;
+        knockbackTurn = 0;
+
+        doubleMoveActive = false;
+        doubleMoveCount = 0;
+        moveStep = 0;
+
+        Debug.Log(currentItem);
+    }
 
     public void GetRandomItem()
     {
@@ -76,10 +89,10 @@ public class ItemManager : MonoBehaviour
         return true;
     }
 
-    public void UseItem()
+    public bool UseItem()
     {
         if (!HasItem())
-            return;
+            return false;
 
         Debug.Log($"アイテム使用 : {currentItem}");
 
@@ -102,5 +115,7 @@ public class ItemManager : MonoBehaviour
         }
 
         currentItem = ItemType.None;
+
+        return true;
     }
 }
