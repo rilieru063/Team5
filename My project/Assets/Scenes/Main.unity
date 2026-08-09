@@ -523,8 +523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66b50418648dede42abf40d1e020283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugMode
-  Alldebugmode: 1
-  debug: 0
+  Alldebugmode: 0
+  reset: 1
   showEnemyPath: 0
   invincible: 0
 --- !u!4 &1870288499
