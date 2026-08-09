@@ -25,6 +25,9 @@ public class EnemyManager : MonoBehaviour
 
     public void MoveEnemies()
     {
+        if (Life.Instance.lifepoint == 0)
+            return;
+
         foreach (Enemy enemy in enemies)
         {
             if (enemy == null)
@@ -34,9 +37,13 @@ public class EnemyManager : MonoBehaviour
             }
 
             enemy.MoveEnemy();
-            Life.Instance.lifeminus(2);
+            Life.Instance.lifeminus(1);
             enemy.MoveEnemy();
-            Life.Instance.lifeminus(2);
+            Life.Instance.lifeminus(1);
+            Debug.Log(ItemManager.Instance.KBA);
+            Debug.Log(ItemManager.Instance.KBT);
         }
+
+        ItemManager.Instance.EnemyTurn();
     }
 }

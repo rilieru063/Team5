@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
 
 public enum TileType
 {
@@ -7,7 +8,8 @@ public enum TileType
     Wall = 1,
     Player = 2,
     Goal = 3,
-    Enemy = 4,
+    EnemySpawn = 4,
+    ItemBoxSpawn = 5,
 }
 
 public class MapLoader : MonoBehaviour
@@ -19,6 +21,7 @@ public class MapLoader : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject goalPrefab;
     public GameObject enemyPrefab;
+    public GameObject itemBoxPrefab;
 
     void Awake()
     {
@@ -34,6 +37,7 @@ public class MapLoader : MonoBehaviour
     void LoadMap()
     {
         string fileName = $"Stage{StageManager.CurrentStage:D2}.csv";
+        List<Vector2Int> enemySpawns = new List<Vector2Int>();
 
         string path = Path.Combine(
             Application.streamingAssetsPath,
@@ -92,14 +96,38 @@ public class MapLoader : MonoBehaviour
                         goalScript.SetGridPosition(x, mapY);
                         break;
 
-                    case TileType.Enemy:
-                        GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
+                    case TileType.EnemySpawn:
+                        enemySpawns.Add(new Vector2Int(x, mapY));
+                        break;
 
-                        Enemy enemyScript = enemy.GetComponent<Enemy>();
-                        enemyScript.SetStartPosition(x, mapY);
+                    case TileType.ItemBoxSpawn:
+                        GameObject itemBox =
+                            Instantiate(itemBoxPrefab, pos, Quaternion.identity);
+
+                        ItemBox itemBoxScript =
+                            itemBox.GetComponent<ItemBox>();
+
+                        itemBoxScript.SetGridPosition(x, mapY);
                         break;
                 }
             }
+        }
+        // 敵のスポーン地点からランダムで1か所選ぶ
+        if (enemySpawns.Count > 0)
+        {
+            int index = Random.Range(0, enemySpawns.Count);
+            Vector2Int spawn = enemySpawns[index];
+
+            Vector2 pos = grid.GetCellCenter(spawn.x, spawn.y);
+
+            GameObject enemy = Instantiate(
+                enemyPrefab,
+                pos,
+                Quaternion.identity
+            );
+
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            enemyScript.SetStartPosition(spawn.x, spawn.y);
         }
     }
 }

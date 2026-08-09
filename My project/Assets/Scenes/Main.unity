@@ -154,6 +154,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 44569236730935229, guid: 09ca889d114c65e4499e338acc5b486c, type: 3}
   goalPrefab: {fileID: 7402621433560090740, guid: 4461f74a1de7d6444a54161770f4471f, type: 3}
   enemyPrefab: {fileID: 8111331457409771627, guid: 38562cb933a6f1e44a14a1e8521daa0b, type: 3}
+  itemBoxPrefab: {fileID: 4680315614706265877, guid: a9b73d6ca82f10142a16deb93164dfcf, type: 3}
 --- !u!114 &162937472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +434,7 @@ GameObject:
   - component: {fileID: 1141063588}
   - component: {fileID: 1141063587}
   - component: {fileID: 1141063589}
+  - component: {fileID: 1141063590}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -480,6 +482,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Life
   lifepoint: 100
+--- !u!114 &1141063590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141063586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd39bf80fcec5640bf0baecc631c8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemManager
 --- !u!1 &1870288497
 GameObject:
   m_ObjectHideFlags: 0
