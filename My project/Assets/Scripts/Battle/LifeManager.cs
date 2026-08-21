@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LifeManager : MonoBehaviour
 {
     public static LifeManager Instance;
-
     public Image hpBar;
-
     public int maxLife = 100;
     public int life;
 
@@ -29,11 +28,19 @@ public class LifeManager : MonoBehaviour
             life = 0;
 
         UpdateLifeUI();
+        if (life <= 0)
+        {
+            GameOver();
+        }
     }
 
     void UpdateLifeUI()
     {
         hpBar.fillAmount = (float)life / maxLife;
     }
-}
 
+    void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+}

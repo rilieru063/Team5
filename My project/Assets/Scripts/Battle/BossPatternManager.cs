@@ -26,7 +26,24 @@ public class BossPatternManager : MonoBehaviour
 
     void Start()
     {
+        SetBossType();
         StartCoroutine(BossPattern());
+    }
+
+    void SetBossType()
+    {
+        switch (StageManager.CurrentStage)
+        {
+            case 0:
+
+                bossType = BossType.TutorialBoss;
+                break;
+
+            case 1:
+
+                bossType = BossType.Stage1Boss;
+                break;
+        }
     }
 
 
