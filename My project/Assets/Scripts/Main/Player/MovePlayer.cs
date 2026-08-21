@@ -22,13 +22,16 @@ public class MovePlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W)) Move(0, 1);
-        if (Input.GetKeyDown(KeyCode.S)) Move(0, -1);
-        if (Input.GetKeyDown(KeyCode.A)) Move(-1, 0);
-        if (Input.GetKeyDown(KeyCode.D)) Move(1, 0);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (!Tutorial.Instance.onTutorial)
         {
-            ItemManager.Instance.UseItem();
+            if (Input.GetKeyDown(KeyCode.W)) Move(0, 1);
+            if (Input.GetKeyDown(KeyCode.S)) Move(0, -1);
+            if (Input.GetKeyDown(KeyCode.A)) Move(-1, 0);
+            if (Input.GetKeyDown(KeyCode.D)) Move(1, 0);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ItemManager.Instance.UseItem();
+            }
         }
     }
 
@@ -62,12 +65,7 @@ public class MovePlayer : MonoBehaviour
 
     void UpdatePosition()
     {
-        //transform.position = grid.GetCellCenter(gridX, gridY);
         Vector2 pos = grid.GetCellCenter(gridX, gridY);
-
-        //Debug.DrawLine(pos + Vector2.left * 0.1f, pos + Vector2.right * 0.1f, Color.red, 100);
-        //Debug.DrawLine(pos + Vector2.up * 0.1f, pos + Vector2.down * 0.1f, Color.red, 100);
-
         transform.position = pos;
     }
 
@@ -141,6 +139,7 @@ public class MovePlayer : MonoBehaviour
         {
             Debug.Log("Stage Clear!");
             Life.Instance.lifedefinition(1);
+            Tutorial.Instance.onTutorial = true;
             SceneManager.LoadScene("Battle");
         }
     }
