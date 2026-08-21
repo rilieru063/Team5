@@ -1003,10 +1003,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 579338490}
     - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
-      propertyPath: bossType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: dropSpawner
       value: 
       objectReference: {fileID: 1461364173}
@@ -1161,6 +1157,7 @@ SceneRoots:
   - {fileID: 5739507228924331214}
   - {fileID: 1461364172}
   - {fileID: 8463359377755411347}
+  - {fileID: 966806157}
   - {fileID: 81200855}
   - {fileID: 1090743614}
   - {fileID: 338473257}
