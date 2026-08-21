@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BossPatternManager : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class BossPatternManager : MonoBehaviour
     // 前回のナイフパターン
     private int lastPattern = -1;
 
+    // ボスが倒されたか
+    private bool bossDefeated = false;
+
     void Start()
     {
         SetBossType();
@@ -37,23 +41,6 @@ public class BossPatternManager : MonoBehaviour
                 bossType = BossType.TutorialBoss;
                 break;
 
-    void SetBossType()
-    {
-        switch (StageManager.CurrentStage)
-        {
-            case 0:
-
-                bossType = BossType.TutorialBoss;
-                break;
-
-            case 1:
-
-                bossType = BossType.Stage1Boss;
-                break;
-        }
-    }
-
-
             case 1:
                 bossType = BossType.Stage1Boss;
                 break;
@@ -62,18 +49,37 @@ public class BossPatternManager : MonoBehaviour
 
     IEnumerator BossPattern()
     {
-        while (true)
+        while (!bossDefeated)
         {
-            // チュートリアル
+            // Tutorial
             if (bossType == BossType.TutorialBoss)
             {
-                yield return StartCoroutine(TutorialBossPattern());
+                yield return StartCoroutine(
+                    TutorialBossPattern()
+                );
             }
 
-            // 1面
+            // Stage1
             else if (bossType == BossType.Stage1Boss)
             {
                 yield return StartCoroutine(Stage1BossPattern());
+            }
+
+            //Life消費処理
+            if (Life.Instance != null)
+            {
+                Life.Instance.lifeminus(1);
+            }
+            else
+            {
+                Debug.LogError("Life.Instance が nullです");
+            }
+
+            if (Life.Instance != null && Life.Instance.lifepoint <= 0)
+            {
+                BossDefeated();
+
+                yield break;
             }
 
 
@@ -206,5 +212,12 @@ public class BossPatternManager : MonoBehaviour
             Vector3 spawnPosition = new Vector3( Mathf.Cos(rad) * radius, Mathf.Sin(rad) * radius,0);
             knifeSpawner.SpawnKnifeToTarget( spawnPosition,targetPosition,0.125f,0.5f );
         }
+    }
+    void BossDefeated()
+    {
+        bossDefeated = true;
+        StopAllCoroutines();
+
+        SceneManager.LoadScene("gameclear");
     }
 }
