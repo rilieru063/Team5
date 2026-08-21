@@ -10,15 +10,21 @@ public class Tutorial : MonoBehaviour
     public Sprite[] tutorialPages;
     private int currentPage = 0;
 
-    public bool onTutorial = true;
+    public bool onTutorial;
+    public static bool onTutorialComplete = false;
 
     void Awake()
     {
         Instance = this;
+        if (onTutorialComplete == true)
+            tutorialImage.enabled = false;
     }
 
     void Start()
     {
+        onTutorial = true;
+        if (onTutorialComplete == true)
+            onTutorial = false;
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Main")
         {
@@ -30,6 +36,7 @@ public class Tutorial : MonoBehaviour
             currentPage = 6;
             Pagedefinition(currentPage);
         }
+
     }
 
     void Update()
@@ -37,14 +44,12 @@ public class Tutorial : MonoBehaviour
         if (!onTutorial)
             return;
         string sceneName = SceneManager.GetActiveScene().name;
-        if (onTutorial == false)
-            tutorialImage.enabled = false;
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (sceneName == "Main")
                 NextPage(5);
             if (sceneName == "Battle")
-                NextPage(11);
+                NextPage(10);
         }
     }
 

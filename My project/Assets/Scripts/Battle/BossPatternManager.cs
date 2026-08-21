@@ -32,6 +32,7 @@ public class BossPatternManager : MonoBehaviour
     {
         SetBossType();
         StartCoroutine(BossPattern());
+        Debug.Log(Life.Instance.lifepoint);
     }
     void SetBossType()
     {
@@ -66,13 +67,16 @@ public class BossPatternManager : MonoBehaviour
             }
 
             //Life消費処理
-            if (Life.Instance != null)
+            if (!Tutorial.Instance.onTutorial)
             {
-                Life.Instance.lifeminus(1);
-            }
-            else
-            {
-                Debug.LogError("Life.Instance が nullです");
+                if (Life.Instance != null)
+                {
+                    Life.Instance.lifeminus(1);
+                }
+                else
+                {
+                    Debug.LogError("Life.Instance が nullです");
+                }
             }
 
             if (Life.Instance != null && Life.Instance.lifepoint <= 0)
@@ -92,16 +96,19 @@ public class BossPatternManager : MonoBehaviour
     // チュートリアルボス
     IEnumerator TutorialBossPattern()
     {
-        // 5個落とす
-        int count = 1;
-
-        for (int i = 0; i < count; i++)
+        if (!Tutorial.Instance.onTutorial)
         {
-            if (dropSpawner != null)
-            {dropSpawner.SpawnDrop(2f,0f);}
+            // 5個落とす
+            int count = 1;
 
-            // 次の落下まで
-            yield return new WaitForSeconds(0.05f);
+            for (int i = 0; i < count; i++)
+            {
+                if (dropSpawner != null)
+                { dropSpawner.SpawnDrop(2f, 0f); }
+
+                // 次の落下まで
+                yield return new WaitForSeconds(0.05f);
+            }
         }
     }
 
