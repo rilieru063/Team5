@@ -1,4 +1,4 @@
 public static class StageManager
 {
-    public static int CurrentStage = 1;
+    public static int CurrentStage = 0;
 }
