@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f46f62d7d67e533458d23a055ce586a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropSpawner
-  dropObject: {fileID: 0}
+  dropObject: {fileID: 812266723675729151, guid: 2a1692940aa190141a9849b7c4895041, type: 3}
   speed: 5
   minX: -3
   maxX: 3
-  spawnY: 5
+  spawnY: 6
