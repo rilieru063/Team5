@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ItemType
 {
@@ -11,6 +12,13 @@ public enum ItemType
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager Instance;
+
+    public Image itemIcon;
+
+    public Sprite itemASprite;
+    public Sprite itemBSprite;
+    public Sprite itemCSprite;
+
     private MovePlayer player;
     private GridLines grid;
 
@@ -39,6 +47,7 @@ public class ItemManager : MonoBehaviour
     }
     void Start()
     {
+        itemIcon.enabled = false;
         player = FindFirstObjectByType<MovePlayer>();
         grid = FindFirstObjectByType<GridLines>();
     }
@@ -47,6 +56,7 @@ public class ItemManager : MonoBehaviour
     {
         return currentItem != ItemType.None;
     }
+
     public void ResetItem()
     {
         currentItem = ItemType.None;
@@ -67,7 +77,35 @@ public class ItemManager : MonoBehaviour
             return;
 
         currentItem = (ItemType)Random.Range(1, 4);
+
+        UpdateItemIcon();
+
         Debug.Log($"ƒAƒCƒeƒ€Žæ“¾ : {currentItem}");
+    }
+
+    void UpdateItemIcon()
+    {
+        switch (currentItem)
+        {
+            case ItemType.ItemA:
+                itemIcon.sprite = itemASprite;
+                itemIcon.enabled = true;
+                break;
+
+            case ItemType.ItemB:
+                itemIcon.sprite = itemBSprite;
+                itemIcon.enabled = true;
+                break;
+
+            case ItemType.ItemC:
+                itemIcon.sprite = itemCSprite;
+                itemIcon.enabled = true;
+                break;
+
+            case ItemType.None:
+                itemIcon.enabled = false;
+                break;
+        }
     }
 
     public void EnemyTurn()
@@ -141,6 +179,7 @@ public class ItemManager : MonoBehaviour
         }
 
         currentItem = ItemType.None;
+        UpdateItemIcon();
 
         return true;
     }
