@@ -1,38 +1,61 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
+    public static Tutorial Instance;
+
     public Image tutorialImage;
     public Sprite[] tutorialPages;
-
     private int currentPage = 0;
+
+    public bool onTutorial = true;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        tutorialImage.sprite = tutorialPages[0];
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Main")
+        {
+            currentPage = 0;
+            Pagedefinition(currentPage);
+        }
+        else if (sceneName == "Battle")
+        {
+            currentPage = 6;
+            Pagedefinition(currentPage);
+        }
     }
 
-    public void NextPage()
+    void Update()
+    {
+        if (!onTutorial)
+            return;
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (onTutorial == false)
+            tutorialImage.enabled = false;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (sceneName == "Main")
+                NextPage(5);
+            if (sceneName == "Battle")
+                NextPage(11);
+        }
+    }
+
+    public void NextPage(int lastPage)
     {
         currentPage++;
 
-        if (currentPage >= tutorialPages.Length)
+        if (currentPage > lastPage)
         {
-            currentPage = tutorialPages.Length - 1;
-            return;
-        }
-
-        tutorialImage.sprite = tutorialPages[currentPage];
-    }
-
-    public void PreviousPage()
-    {
-        currentPage--;
-
-        if (currentPage < 0)
-        {
-            currentPage = 0;
+            onTutorial = false;
+            tutorialImage.enabled = false;
             return;
         }
 
