@@ -8,6 +8,9 @@ public class GameClearManager : MonoBehaviour
         // ステージ番号を1増やす
         StageManager.CurrentStage++;
 
+        //チュートリアル完了
+        Tutorial.onTutorialComplete = true;
+
         // 次のシーンへ移動
         SceneManager.LoadScene("Main");
     }

@@ -18,6 +18,7 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
+        Life.Instance.lifedefinition(50);
     }
 
     void Update()
@@ -139,7 +140,11 @@ public class MovePlayer : MonoBehaviour
         {
             Debug.Log("Stage Clear!");
             Life.Instance.lifedefinition(1);
-            Tutorial.Instance.onTutorial = true;
+            if (!Tutorial.onTutorialComplete)
+            {
+                Life.Instance.lifedefinition(20);
+                Tutorial.Instance.onTutorial = true;
+            }
             SceneManager.LoadScene("Battle");
         }
     }
