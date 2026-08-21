@@ -5,6 +5,6 @@ public class TitleSceneManager : MonoBehaviour
 {
     public void GoToHowToPlay()
     {
-        SceneManager.LoadScene("How to play");
+        SceneManager.LoadScene("Main");
     }
 }
