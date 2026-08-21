@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9048715618691380894
+--- !u!1 &8333164745235819725
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6313283982018073278}
-  - component: {fileID: 8960900103333584441}
+  - component: {fileID: 826581284176456464}
+  - component: {fileID: 3776175605602507121}
   m_Layer: 0
-  m_Name: BossPatternManager
+  m_Name: DropSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6313283982018073278
+--- !u!4 &826581284176456464
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048715618691380894}
+  m_GameObject: {fileID: 8333164745235819725}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,19 +32,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8960900103333584441
+--- !u!114 &3776175605602507121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048715618691380894}
+  m_GameObject: {fileID: 8333164745235819725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf614a949834bd48b2dfd8e0f34c9e6, type: 3}
+  m_Script: {fileID: 11500000, guid: f46f62d7d67e533458d23a055ce586a3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossPatternManager
-  bossType: 0
-  dropSpawner: {fileID: 3776175605602507121, guid: eabaabd4032cfe742967589d00ddf6dc, type: 3}
-  knifeSpawner: {fileID: 4904597358550206666, guid: df869fd81d44f0c44b4fac8a9562b7d1, type: 3}
-  player: {fileID: 9217089704582786128, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::DropSpawner
+  dropObject: {fileID: 812266723675729151, guid: 2a1692940aa190141a9849b7c4895041, type: 3}
+  speed: 5
+  minX: -3
+  maxX: 3
+  spawnY: 6
