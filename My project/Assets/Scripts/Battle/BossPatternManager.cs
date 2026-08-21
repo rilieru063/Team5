@@ -27,7 +27,10 @@ public class BossPatternManager : MonoBehaviour
     void Start()
     {
         SetBossType();
+<<<<<<< HEAD
 
+=======
+>>>>>>> Abe_Yuki.4
         StartCoroutine(BossPattern());
     }
     void SetBossType()
@@ -37,6 +40,22 @@ public class BossPatternManager : MonoBehaviour
             case 0:
                 bossType = BossType.TutorialBoss;
                 break;
+
+    void SetBossType()
+    {
+        switch (StageManager.CurrentStage)
+        {
+            case 0:
+
+                bossType = BossType.TutorialBoss;
+                break;
+
+            case 1:
+
+                bossType = BossType.Stage1Boss;
+                break;
+        }
+    }
 
 
             case 1:
