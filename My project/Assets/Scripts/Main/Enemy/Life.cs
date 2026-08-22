@@ -10,13 +10,19 @@ public class Life : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Life Awake : " + gameObject.name);
+
         if (Instance != null && Instance != this)
         {
+            Debug.Log("Lifeの重複を削除 : " + gameObject.name);
             Destroy(gameObject);
             return;
         }
 
         Instance = this;
+
+        Debug.Log("Life Instance登録 : " + Instance);
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -36,7 +42,7 @@ public class Life : MonoBehaviour
     public void lifeminus(int minus) //ライフをマイナス
     {
         lifepoint -= minus;
-        Debug.Log(lifepoint);
+        RefreshUI();
     }
     
     public void lifedefinition(int num) //ライフを強制

@@ -38,11 +38,9 @@ public class EnemyManager : MonoBehaviour
 
             enemy.MoveEnemy();
             Life.Instance.lifeminus(1);
-            Life.Instance.RefreshUI();
 
             enemy.MoveEnemy();
             Life.Instance.lifeminus(1);
-            Life.Instance.RefreshUI();
         }
 
         ItemManager.Instance.EnemyTurn();
