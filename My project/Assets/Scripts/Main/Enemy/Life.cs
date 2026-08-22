@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Life : MonoBehaviour
@@ -5,6 +6,7 @@ public class Life : MonoBehaviour
     public static Life Instance;
 
     public int lifepoint;
+    public TextMeshProUGUI LifeText;
 
     void Awake()
     {
@@ -16,6 +18,19 @@ public class Life : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        RefreshUI();
+    }
+
+    public void RefreshUI()
+    {
+        if(LifeText != null)
+        {
+            LifeText.text = lifepoint.ToString();
+        }
     }
 
     public void lifeminus(int minus) //ライフをマイナス
