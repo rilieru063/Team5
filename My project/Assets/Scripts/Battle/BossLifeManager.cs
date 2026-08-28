@@ -6,7 +6,7 @@ public class BossLifeManager : MonoBehaviour
     public Image hpBar;
 
     [Header("Boss‚ÌÅ‘åLifePoint")]
-    public int maxLifePoint = 100;
+    public int maxLifePoint = 50;
 
     void Start()
     {

@@ -17,10 +17,14 @@ public class BossPatternManager : MonoBehaviour
     [Header("1面ボス")]
     public KnifeSpawner knifeSpawner;
 
-    // プレイヤー
+    // Player
     [Header("プレイヤー")]
     public Transform player;
 
+    // PlayerDamage
+    [Header("プレイヤーへのダメージ")]
+    [SerializeField] private int tutorialBossDamage = 20;
+    [SerializeField] private int stage1BossDamage = 2;
 
     // 前回のナイフパターン
     private int lastPattern = -1;
@@ -31,9 +35,12 @@ public class BossPatternManager : MonoBehaviour
     void Start()
     {
         SetBossType();
+        SetPlayerDamage();
+
         StartCoroutine(BossPattern());
         Debug.Log(Life.Instance.lifepoint);
     }
+
     void SetBossType()
     {
         switch (StageManager.CurrentStage)
@@ -48,6 +55,34 @@ public class BossPatternManager : MonoBehaviour
         }
     }
 
+    void SetPlayerDamage()
+    {
+        if (player == null)
+        {
+            Debug.LogError("Playerが設定されていません");
+            return;
+        }
+
+        Player playerScript = player.GetComponent<Player>();
+
+        if (playerScript == null)
+        {
+            Debug.LogError("Playerコンポーネントが見つかりません");
+            return;
+        }
+
+        switch (bossType)
+        {
+            case BossType.TutorialBoss:
+                playerScript.SetDamage(tutorialBossDamage);
+                break;
+
+            case BossType.Stage1Boss:
+                playerScript.SetDamage(stage1BossDamage);
+                break;
+        }
+    }
+
     IEnumerator BossPattern()
     {
         while (!bossDefeated)
@@ -55,9 +90,7 @@ public class BossPatternManager : MonoBehaviour
             // Tutorial
             if (bossType == BossType.TutorialBoss)
             {
-                yield return StartCoroutine(
-                    TutorialBossPattern()
-                );
+                yield return StartCoroutine(TutorialBossPattern());
             }
 
             // Stage1
@@ -104,7 +137,7 @@ public class BossPatternManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 if (dropSpawner != null)
-                { dropSpawner.SpawnDrop(2f, 0f); }
+                { dropSpawner.SpawnDrop(3.5f,0f); }
 
                 // 次の落下まで
                 yield return new WaitForSeconds(0.05f);

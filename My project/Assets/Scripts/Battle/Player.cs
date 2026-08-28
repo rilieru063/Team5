@@ -10,10 +10,19 @@ public class Player : MonoBehaviour
     [SerializeField] Borders borders;
     [SerializeField, Range(0f, 1f)] private float followStrength;//í«è]ÇÃíxÇÍ(0Ç…ãﬂÇ¢Ç∆í«è]Ç™íxÇÍÇÈ)
 
+    private int damageAmount = 1;
+
+
     private void Start()
     {
         
     }
+
+    public void SetDamage(int damage)
+    {
+        damageAmount = damage;
+    }
+
 
     private void Update()
     {
@@ -29,7 +38,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            LifeManager.Instance.Damage(1);
+            LifeManager.Instance.Damage(damageAmount);
         }
     }
 }
