@@ -638,7 +638,7 @@ GameObject:
   - component: {fileID: 360721544}
   - component: {fileID: 360721545}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,6 +1059,7 @@ GameObject:
   - component: {fileID: 754852267}
   - component: {fileID: 754852269}
   - component: {fileID: 754852268}
+  - component: {fileID: 754852270}
   m_Layer: 5
   m_Name: ArrowImage
   m_TagString: Untagged
@@ -1127,6 +1128,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754852266}
   m_CullTransparentMesh: 1
+--- !u!114 &754852270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754852266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa7d7d5a2ccdc34db8160bd1da59098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
+  upImage: {fileID: 1577072740}
+  downImage: {fileID: 1630250117}
+  leftImage: {fileID: 235392792}
+  rightImage: {fileID: 335298056}
 --- !u!1 &1141063586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1613,7 @@ MonoBehaviour:
   reset: 0
   showEnemyPath: 0
   invincible: 0
+  tutorialComp: 1
 --- !u!4 &1870288499
 Transform:
   m_ObjectHideFlags: 0
@@ -1836,6 +1854,6 @@ SceneRoots:
   - {fileID: 720289881}
   - {fileID: 1984979983}
   - {fileID: 162937473}
+  - {fileID: 1426545121}
   - {fileID: 1141063588}
   - {fileID: 1870288499}
-  - {fileID: 1426545121}
