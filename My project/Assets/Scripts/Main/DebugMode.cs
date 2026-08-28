@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 
 public class DebugMode : MonoBehaviour
@@ -10,11 +9,11 @@ public class DebugMode : MonoBehaviour
     public bool reset = false;         //デバッグ機能
     public bool showEnemyPath = false; //敵の経路表示
     public bool invincible = false;    //無敵
+    public bool tutorialComp = false;  //チュートリアルスキップ
 
     void Awake()
     {
         Instance = this;
-        Enemy enemy = GetComponent<Enemy>();
     }
 
     void Update()
@@ -24,6 +23,7 @@ public class DebugMode : MonoBehaviour
             reset = Alldebugmode;
             showEnemyPath = Alldebugmode;
             invincible = Alldebugmode;
+            tutorialComp = Alldebugmode;
         }
 
         if (!reset)

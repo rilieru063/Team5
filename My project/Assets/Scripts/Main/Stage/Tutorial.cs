@@ -22,9 +22,14 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
-        onTutorial = true;
-        if (onTutorialComplete == true)
+        if (DebugMode.Instance != null &&
+            DebugMode.Instance.tutorialComp)
+        {
+            onTutorialComplete = true;
             onTutorial = false;
+            tutorialImage.enabled = false;
+            return;
+        }
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Main")
         {
