@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9048715618691380894
+--- !u!1 &5443743567985535759
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6313283982018073278}
-  - component: {fileID: 8960900103333584441}
+  - component: {fileID: 5370206366517078617}
+  - component: {fileID: 8435872199071723695}
   m_Layer: 0
-  m_Name: BossPatternManager
+  m_Name: SpiderLegSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6313283982018073278
+--- !u!4 &5370206366517078617
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048715618691380894}
+  m_GameObject: {fileID: 5443743567985535759}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,22 +32,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8960900103333584441
+--- !u!114 &8435872199071723695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9048715618691380894}
+  m_GameObject: {fileID: 5443743567985535759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf614a949834bd48b2dfd8e0f34c9e6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c53638a70d33b44c8083d7a71da5532, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BossPatternManager
-  bossType: 0
-  dropSpawner: {fileID: 3776175605602507121, guid: eabaabd4032cfe742967589d00ddf6dc, type: 3}
-  knifeSpawner: {fileID: 4904597358550206666, guid: df869fd81d44f0c44b4fac8a9562b7d1, type: 3}
-  spiderLegSpawner: {fileID: 8435872199071723695, guid: 10b5379156bd7694284eaf517a04cfa3, type: 3}
-  player: {fileID: 0}
-  tutorialBossDamage: 20
-  stage1BossDamage: 2
+  m_EditorClassIdentifier: Assembly-CSharp::SpiderLegSpawner
+  spiderLegPrefab: {fileID: 6244387379158233889, guid: 1d377397cb6ee3b44809c6404e23f2bc, type: 3}
+  speed: 5
