@@ -882,7 +882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraAspect
   defaultWidth: 16
   defaultHeight: 9
-  defaultOrthographicSize: 5
 --- !u!1 &651071544
 GameObject:
   m_ObjectHideFlags: 0

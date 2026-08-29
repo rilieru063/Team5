@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 419.0867, y: 183.87898, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.077, y: 0.077, z: 0.077}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,8 +109,8 @@ MonoBehaviour:
   audioSource: {fileID: 459128853450302356}
   bananaSE: {fileID: 8300000, guid: b8524ac4865aa2a4d839fb2db630f236, type: 3}
   enemySprites:
-  - {fileID: 8596640243658272642, guid: ce70a9e15d047b5408a7c06508794050, type: 3}
-  - {fileID: 6860731786251759356, guid: c755a3bfd116dce4aa19f119239d46c5, type: 3}
+  - {fileID: -7282886668606283007, guid: 6e5a53035d062a640a210ea4f4c9daa1, type: 3}
+  - {fileID: -5899927303015767666, guid: 36113fafef3f8a64b82c6a8c4963e838, type: 3}
   - {fileID: -3438905571476058607, guid: 3e2f5202a5767aa4a92d416d3dbd9c04, type: 3}
 --- !u!82 &459128853450302356
 AudioSource:
