@@ -22,6 +22,10 @@ public class ItemManager : MonoBehaviour
     private MovePlayer player;
     private GridLines grid;
 
+    public AudioSource audioSource;
+    public AudioClip itemA_SE;
+    public AudioClip itemB_SE;
+
     public GameObject itemTrapPrefab;
 
     private ItemType currentItem = ItemType.None;
@@ -146,11 +150,13 @@ public class ItemManager : MonoBehaviour
         switch (currentItem)
         {
             case ItemType.ItemA:
+                audioSource.PlayOneShot(itemA_SE);
                 knockbackActive = true;
                 knockbackTurn = 2;
                 break;
 
             case ItemType.ItemB:
+                audioSource.PlayOneShot(itemB_SE);
                 doubleMoveActive = true;
                 doubleMoveCount = 3;
                 moveStep = 0;

@@ -23,18 +23,48 @@ public class Enemy : MonoBehaviour
     public int PreviousX => previousX;
     public int PreviousY => previousY;
 
+    public AudioSource audioSource;
+    public AudioClip bananaSE;
+
+    public Sprite[] enemySprites;
+
     private int stopTurn = 0;
     public bool IsStopped()
     {
         return stopTurn > 0;
     }
-
+    
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
         player = FindFirstObjectByType<MovePlayer>();
 
+        if (grid == null)
+        {
+            Debug.LogError("GridLines‚ª‚ ‚è‚Ü‚¹‚ñ");
+            return;
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("MovePlayer‚ª‚ ‚è‚Ü‚¹‚ñ");
+            return;
+        }
+
+        if (EnemyManager.Instance == null)
+        {
+            Debug.LogError("EnemyManager.Instance‚ª‚ ‚è‚Ü‚¹‚ñ");
+            return;
+        }
+
         EnemyManager.Instance.RegisterEnemy(this);
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        int stage = StageManager.CurrentStage;
+        if (stage >= 0 && stage < enemySprites.Length)
+        {
+            sr.sprite = enemySprites[stage];
+        }
     }
 
     void Update()
@@ -98,9 +128,8 @@ public class Enemy : MonoBehaviour
                 gridY == trap.GridY)
             {
                 Debug.Log("Enemy‚ªTrap‚ð“¥‚ñ‚¾I");
-
+                audioSource.PlayOneShot(bananaSE);
                 StopEnemy(5);
-
                 Destroy(trap.gameObject);
 
                 return;
