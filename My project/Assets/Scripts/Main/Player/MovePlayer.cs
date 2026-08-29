@@ -97,13 +97,35 @@ public class MovePlayer : MonoBehaviour
         CheckGoal();
     }
 
+    //void CheckEnemyCollision()
+    //{
+    //    if (DebugMode.Instance.invincible)
+    //        return;
+
+    //    foreach (Enemy enemy in EnemyManager.Instance.Enemies)
+    //    {
+    //        if (GridX == enemy.GridX &&
+    //            GridY == enemy.GridY)
+    //        {
+    //            Debug.Log("Game Over!");
+    //            SceneManager.LoadScene("Battle");
+    //        }
+    //    }
+    //}
     void CheckEnemyCollision()
     {
-        if (DebugMode.Instance.invincible)
+        if (DebugMode.Instance != null &&
+            DebugMode.Instance.invincible)
+            return;
+
+        if (EnemyManager.Instance == null)
             return;
 
         foreach (Enemy enemy in EnemyManager.Instance.Enemies)
         {
+            if (enemy == null)
+                continue;
+
             if (GridX == enemy.GridX &&
                 GridY == enemy.GridY)
             {

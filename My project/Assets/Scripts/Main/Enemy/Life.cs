@@ -39,6 +39,12 @@ public class Life : MonoBehaviour
         }
     }
 
+    public void SetLifeText(TextMeshProUGUI text)
+    {
+        LifeText = text;
+        RefreshUI();
+    }
+
     public void lifeminus(int minus) //ライフをマイナス
     {
         lifepoint -= minus;

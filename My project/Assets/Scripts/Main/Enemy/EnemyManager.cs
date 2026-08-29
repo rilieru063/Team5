@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     {
         get { return enemies; }
     }
+
     void Awake()
     {
         Instance = this;
