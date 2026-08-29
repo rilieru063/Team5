@@ -1,30 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraAspect : MonoBehaviour
 {
-    // 最初に作った画面のwidth
-    public float defaultWidth = 16.0f;
-
-    // 最初に作った画面のheight
-    public float defaultHeight = 9.0f;
+    public float defaultWidth = 1920f;
+    public float defaultHeight = 1080f;
 
     void Start()
     {
-        // MainCameraを変数に格納
         Camera mainCamera = Camera.main;
 
-        // 最初に作った画面のアスペクト比
-        float defaultAspect = defaultWidth / defaultHeight;
+        float targetAspect = defaultWidth / defaultHeight;
+        float windowAspect = (float)Screen.width / Screen.height;
 
-        // 実際の画面のアスペクト比
-        float actualAspect = (float)Screen.width / (float)Screen.height;
+        float scaleHeight = windowAspect / targetAspect;
 
-        // 実機とUnity画面の比率
-        float ratio = actualAspect / defaultAspect;
+        if (scaleHeight < 1.0f)
+        {
+            // 画面が縦長
+            mainCamera.rect = new Rect(
+                0,
+                (1.0f - scaleHeight) / 2.0f,
+                1.0f,
+                scaleHeight
+            );
+        }
+        else
+        {
+            // 画面が横長
+            float scaleWidth = 1.0f / scaleHeight;
 
-        // サイズ調整
-        mainCamera.orthographicSize /= ratio;
+            mainCamera.rect = new Rect(
+                (1.0f - scaleWidth) / 2.0f,
+                0,
+                scaleWidth,
+                1.0f
+            );
+        }
     }
 }
