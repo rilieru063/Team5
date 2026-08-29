@@ -1169,6 +1169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1141063588}
   - component: {fileID: 1141063590}
+  - component: {fileID: 1141063593}
   - component: {fileID: 1141063591}
   - component: {fileID: 1141063592}
   m_Layer: 0
@@ -1336,6 +1337,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1141063593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141063586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22c1f474b30b2ec49894bde5ba9922ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
 --- !u!1 &1154260310
 GameObject:
   m_ObjectHideFlags: 0
