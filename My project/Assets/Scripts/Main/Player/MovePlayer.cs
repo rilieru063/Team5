@@ -161,13 +161,15 @@ public class MovePlayer : MonoBehaviour
             GridY == goal.GridY)
         {
             Debug.Log("Stage Clear!");
-            Life.Instance.lifedefinition(1);
+            /*int num = Life.Instance.lifepoint;
+            Life.Instance.lifedefinition(num / 2);
             if (!Tutorial.onTutorialComplete)
             {
                 Life.Instance.lifedefinition(20);
                 Tutorial.Instance.onTutorial = true;
             }
-            SceneManager.LoadScene("Battle");
+            SceneManager.LoadScene("Battle");*/
+            SceneManager.LoadScene("gameclear");
         }
     }
 }
