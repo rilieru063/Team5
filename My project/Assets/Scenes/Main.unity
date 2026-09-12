@@ -1729,7 +1729,7 @@ MonoBehaviour:
   reset: 0
   showEnemyPath: 0
   invincible: 0
-  tutorialComp: 0
+  tutorialComp: 1
 --- !u!4 &1870288499
 Transform:
   m_ObjectHideFlags: 0
