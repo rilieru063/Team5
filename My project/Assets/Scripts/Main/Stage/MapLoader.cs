@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public enum TileType
 {
@@ -48,6 +49,7 @@ public class MapLoader : MonoBehaviour
         if (!File.Exists(path))
         {
             Debug.LogError($"CSV‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ : {path}");
+            SceneManager.LoadScene("Title");
             return;
         }
 
