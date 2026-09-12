@@ -34,6 +34,16 @@ public class Player : MonoBehaviour
         damageAmount = damage;
     }
 
+    public void TakeDamage()
+    {
+        LifeManager.Instance.Damage(damageAmount);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        LifeManager.Instance.Damage(damage);
+    }
+
 
     private void Update()
     {

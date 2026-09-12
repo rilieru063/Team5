@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class BossPatternManager : MonoBehaviour
 {
     //種類決定
-    public enum BossType{TutorialBoss, Stage1Boss, Stage2Boss}
+    public enum BossType{TutorialBoss, Stage1Boss, Stage2Boss, Stage3Boss}
 
     [Header("ボスの種類")]
     public BossType bossType;
@@ -19,9 +19,13 @@ public class BossPatternManager : MonoBehaviour
 
     [Header("2面ボス")]
     public SpiderLegSpawner spiderLegSpawner;
-
-    [Header("蜘蛛の巣")]
     public GameObject spiderWebPrefab;
+
+    [Header("3面ボス")]
+    public BalloonSpawner balloonSpawner;
+    public WarningAreaSpawner warningAreaSpawner;
+    public BallSpawner ballSpawner;
+    public MissileSpawner missileSpawner;
 
     // Player
     [Header("プレイヤー")]
@@ -33,11 +37,20 @@ public class BossPatternManager : MonoBehaviour
     [SerializeField] private int stage1BossDamage = 2;
     [SerializeField] private int stage2BossDamage = 3;
 
+    [Header("3面ボス攻撃ダメージ")]
+    [SerializeField] private int stage3BalloonDamage = 5;
+    [SerializeField] private int stage3BombDamage = 10;
+    [SerializeField] private int stage3BallDamage = 5;
+    [SerializeField] private int stage3MissileDamage = 25;
+
     // 前回のナイフパターン
     private int lastPattern = -1;
 
     // Stage2で前回選択したパターン
     private int lastStage2Pattern = -1;
+
+    // Stage3で前回選択したパターン
+    private int lastStage3Pattern = -1;
 
     // ボスが倒されたか
     private bool bossDefeated = false;
@@ -65,6 +78,10 @@ public class BossPatternManager : MonoBehaviour
 
             case 2:
                 bossType = BossType.Stage2Boss;
+                break;
+
+            case 3:
+                bossType = BossType.Stage3Boss;
                 break;
         }
     }
@@ -98,6 +115,10 @@ public class BossPatternManager : MonoBehaviour
             case BossType.Stage2Boss:
                 playerScript.SetDamage(stage2BossDamage);
                 break;
+
+            case BossType.Stage3Boss:
+                playerScript.SetDamage(stage2BossDamage);
+                break;
         }
     }
 
@@ -121,6 +142,12 @@ public class BossPatternManager : MonoBehaviour
             {
                 yield return StartCoroutine(Stage2BossPattern());
             }
+
+            else if (bossType == BossType.Stage3Boss)
+            {
+                yield return StartCoroutine(Stage3BossPattern());
+            }
+
 
             //Life消費処理
             if (!Tutorial.Instance.onTutorial)
@@ -230,6 +257,38 @@ public class BossPatternManager : MonoBehaviour
         }
     }
 
+    // 3面ボス
+    IEnumerator Stage3BossPattern()
+    {
+        int pattern;
+
+        do{pattern = Random.Range(0, 4);}
+        while (pattern == lastStage3Pattern);
+
+        lastStage3Pattern = pattern;
+
+
+        switch (pattern)
+        {
+            case 0:
+                yield return StartCoroutine(Stage3Pattern1());
+                break;
+
+            case 1:
+                yield return StartCoroutine(Stage3Pattern2());
+                break;
+
+            case 2:
+                yield return StartCoroutine(Stage3Pattern3());
+                break;
+
+            case 3:
+                yield return StartCoroutine(Stage3Pattern4());
+                break;
+        }
+    }
+
+
     // Pattern1上から
     void Pattern1()
     {
@@ -325,8 +384,6 @@ public class BossPatternManager : MonoBehaviour
         }
 
         spiderWeb.Initialize(0.5f,3f,2f,0.25f);
-
-        yield return new WaitForSeconds(0.5f);
     }
     // 2面パターン2
     IEnumerator Stage2Pattern2()
@@ -379,7 +436,6 @@ public class BossPatternManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < legs.Length; i++)
         {
@@ -441,8 +497,6 @@ public class BossPatternManager : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
-
         for (int i = 0; i < legs.Length; i++)
         {
             if (legs[i] != null)
@@ -451,6 +505,110 @@ public class BossPatternManager : MonoBehaviour
             }
         }
     }
+
+    // 3面パターン1
+    IEnumerator Stage3Pattern1()
+    {
+        if (balloonSpawner == null)
+        {
+            Debug.LogError("BalloonSpawnerが設定されていません");
+            yield break;
+        }
+
+        yield return StartCoroutine(balloonSpawner.SpawnPattern1(stage3BalloonDamage));
+
+        //yield return new WaitForSeconds(2f);
+    }
+
+    // 3面パターン2
+    IEnumerator Stage3Pattern2()
+    {
+        if (warningAreaSpawner == null)
+        {
+            Debug.LogError("WarningAreaSpawnerが設定されていません");
+            yield break;
+        }
+
+        GameObject warningArea =warningAreaSpawner.SpawnWarningArea();
+
+        if (warningArea == null)
+        {
+            Debug.LogError("警告エリアの生成に失敗しました");
+            yield break;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject bomb = warningAreaSpawner.SpawnBomb(warningArea.transform.position, player, stage3BombDamage);
+
+        if (bomb == null)
+        {
+            Debug.LogError("爆弾の生成に失敗しました");
+            yield break;
+        }
+
+        while (bomb != null)
+        {
+            yield return null;
+        }
+
+        if (warningArea != null)
+        {
+            Destroy(warningArea);
+        }
+
+        //yield return new WaitForSeconds(0.2f);
+    }
+
+    // 3面パターン3
+    IEnumerator Stage3Pattern3()
+    {
+        if (ballSpawner == null)
+        {
+            Debug.LogError("BallSpawnerが設定されていません");
+            yield break;
+        }
+
+        GameObject ball = ballSpawner.SpawnBall(player, stage3BallDamage);
+
+
+        if (ball == null)
+        {
+            yield break;
+        }
+
+        while (ball != null)
+        {
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.2f);
+    }
+
+    // 3面パターン4
+    IEnumerator Stage3Pattern4()
+    {
+        if (missileSpawner == null)
+        {
+            Debug.LogError("MissileSpawnerが設定されていません");
+            yield break;
+        }
+
+        GameObject missile = missileSpawner.SpawnMissile(player,stage3MissileDamage);
+
+        if (missile == null)
+        {
+            yield break;
+        }
+
+        while (missile != null)
+        {
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(0.2f);
+    }
+
 
     void BossDefeated()
     {
