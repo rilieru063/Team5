@@ -3,61 +3,35 @@ using UnityEngine;
 public class GridLines : MonoBehaviour
 
 {
-
     public int width = 8;
-
     public int height = 8;
-
     public float cellSize = 1f;
 
     void Start()
-
     {
-
         DrawGrid();
-
     }
 
     void DrawGrid()
-
     {
-
         float offsetX = (width * cellSize) / 2f;
-
         float offsetY = (height * cellSize) / 2f;
-
         // ècê¸
-
         for (int x = 0; x <= width; x++)
-
         {
-
             CreateLine(
-
                 new Vector2(x * cellSize - offsetX, -offsetY),
-
                 new Vector2(x * cellSize - offsetX, height * cellSize - offsetY)
-
             );
-
         }
-
         // â°ê¸
-
         for (int y = 0; y <= height; y++)
-
         {
-
             CreateLine(
-
                 new Vector2(-offsetX, y * cellSize - offsetY),
-
                 new Vector2(width * cellSize - offsetX, y * cellSize - offsetY)
-
             );
-
         }
-
     }
 
     void CreateLine(Vector2 start, Vector2 end)

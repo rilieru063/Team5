@@ -8,36 +8,38 @@ public class GameOverSceneManager : MonoBehaviour
     public AudioClip hoverSE;
     public AudioClip clickSE;
 
-    // ƒV[ƒ“Ø‚è‘Ö‚¦‚Ü‚Å‚Ì‘Ò‚¿ŠÔ
+    // ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã¾ã§ã®å¾…ã¡æ™‚é–“
     public float sceneChangeDelay = 0.3f;
 
-    // ƒJ[ƒ\ƒ‹‚ªƒ{ƒ^ƒ“‚Éæ‚Á‚½‚Æ‚«
+    // ã‚«ãƒ¼ã‚½ãƒ«ãŒãƒœã‚¿ãƒ³ã«ä¹—ã£ãŸã¨ã
     public void PlayHoverSE()
     {
         audioSource.PlayOneShot(hoverSE);
     }
 
-    // ƒŠƒgƒ‰ƒC
+    // ãƒªãƒˆãƒ©ã‚¤
     public void Retry()
     {
-        StartCoroutine(ChangeScene("Main"));
+        SceneManager.LoadScene("Main");
+        Life.Instance.lifedefinition(50);
     }
 
-    // ƒ^ƒCƒgƒ‹‚Ö–ß‚é
+    // ã‚¿ã‚¤ãƒˆãƒ«ã¸æˆ»ã‚‹
     public void BackToTitle()
     {
+        Life.Instance.lifedefinition(50);
         StartCoroutine(ChangeScene("Title"));
     }
 
     private IEnumerator ChangeScene(string sceneName)
     {
-        // ƒNƒŠƒbƒN‰¹
+        // ã‚¯ãƒªãƒƒã‚¯éŸ³
         audioSource.PlayOneShot(clickSE);
 
-        // ­‚µ‘Ò‚Â
+        // å°‘ã—å¾…ã¤
         yield return new WaitForSeconds(sceneChangeDelay);
 
-        // ƒV[ƒ“ˆÚ“®
+        // ã‚·ãƒ¼ãƒ³ç§»å‹•
         SceneManager.LoadScene(sceneName);
     }
 }
