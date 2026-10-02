@@ -8,7 +8,6 @@ public class GameClearManager : MonoBehaviour
     public AudioClip hoverSE;
     public AudioClip clickSE;
 
-    // シーン切り替えまでの待ち時間
     public float sceneChangeDelay = 0.3f;
 
     // カーソルがボタンに乗ったとき
@@ -23,15 +22,26 @@ public class GameClearManager : MonoBehaviour
         StartCoroutine(GoToNextStage());
     }
 
+    // 今のステージをもう一度
+    public void Replay()
+    {
+        StartCoroutine(ChangeScene("Main"));
+    }
+
+    // タイトルへ戻る
+    public void BackToTitle()
+    {
+        StartCoroutine(ChangeScene("Title"));
+    }
+
+    // 次のステージへ進む処理
     private IEnumerator GoToNextStage()
     {
-        // クリック音
         audioSource.PlayOneShot(clickSE);
 
-        // 少し待つ
         yield return new WaitForSeconds(sceneChangeDelay);
 
-        // ステージ番号を1増やす
+        // 次のステージ番号へ
         StageManager.CurrentStage++;
 
         // チュートリアル完了
@@ -39,7 +49,16 @@ public class GameClearManager : MonoBehaviour
         Tutorial.Instance.onTutorial = false;
         Life.Instance.lifedefinition(50);
 
-        // 次のシーンへ移動
         SceneManager.LoadScene("Main");
+    }
+
+    // リプレイ・タイトル用
+    private IEnumerator ChangeScene(string sceneName)
+    {
+        audioSource.PlayOneShot(clickSE);
+
+        yield return new WaitForSeconds(sceneChangeDelay);
+
+        SceneManager.LoadScene(sceneName);
     }
 }
