@@ -10,6 +10,8 @@ public class GameClearManager : MonoBehaviour
 
         //チュートリアル完了
         Tutorial.onTutorialComplete = true;
+        Tutorial.Instance.onTutorial = false;
+        Life.Instance.lifedefinition(50);
 
         // 次のシーンへ移動
         SceneManager.LoadScene("Main");

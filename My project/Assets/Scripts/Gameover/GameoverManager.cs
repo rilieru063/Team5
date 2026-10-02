@@ -7,11 +7,13 @@ public class GameOverSceneManager : MonoBehaviour
     public void Retry()
     {
         SceneManager.LoadScene("Main");
+        Life.Instance.lifedefinition(50);
     }
 
     // ƒ^ƒCƒgƒ‹‚Ö–ß‚é
     public void BackToTitle()
     {
         SceneManager.LoadScene("Title");
+        Life.Instance.lifedefinition(50);
     }
 }

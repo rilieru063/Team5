@@ -10,20 +10,23 @@ public class Tutorial : MonoBehaviour
     public Sprite[] tutorialPages;
     private int currentPage = 0;
 
-    public bool onTutorial;
+    public bool onTutorial = true;
     public static bool onTutorialComplete = false;
 
     void Awake()
     {
         Instance = this;
         if (onTutorialComplete == true)
+        {
             tutorialImage.enabled = false;
+            onTutorial = false;
+        }
     }
 
     void Start()
     {
         if (DebugMode.Instance != null &&
-            DebugMode.Instance.tutorialComp)
+            DebugMode.Instance.tutorialComp == true)
         {
             onTutorialComplete = true;
             onTutorial = false;
@@ -41,7 +44,8 @@ public class Tutorial : MonoBehaviour
             currentPage = 6;
             Pagedefinition(currentPage);
         }
-
+        Debug.Log(onTutorialComplete);
+        Debug.Log(onTutorial);
     }
 
     void Update()

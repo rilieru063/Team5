@@ -12,7 +12,6 @@ public class LifeUI : MonoBehaviour
             Debug.LogError("Life.Instance‚ª‚ ‚è‚Ü‚¹‚ñ");
             return;
         }
-
         Life.Instance.LifeText = lifeText;
         Life.Instance.RefreshUI();
     }
