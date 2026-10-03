@@ -18,8 +18,9 @@ public class WarningAreaSpawner : MonoBehaviour
     [Header("爆弾")]
     [SerializeField] private float bombSpawnY = 7f;
 
+    [Header("ダメージエリア")]
+    [SerializeField] private GameObject damageAreaPrefab;
 
-    // 警告エリアを生成
     public GameObject SpawnWarningArea()
     {
         if (warningAreaPrefab == null)
@@ -63,5 +64,18 @@ public class WarningAreaSpawner : MonoBehaviour
         bombScript.SetDamage(damage);
 
         return bomb;
+    }
+
+    public GameObject SpawnDamageArea(Vector3 position)
+    {
+        if (damageAreaPrefab == null)
+        {
+            Debug.LogError("DamageAreaPrefabが設定されていません");
+            return null;
+        }
+
+        GameObject damageArea = Instantiate(damageAreaPrefab, position, Quaternion.identity);
+
+        return damageArea;
     }
 }

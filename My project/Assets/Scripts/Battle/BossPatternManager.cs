@@ -27,6 +27,9 @@ public class BossPatternManager : MonoBehaviour
     public BallSpawner ballSpawner;
     public MissileSpawner missileSpawner;
 
+    [Header("Boss表示")]
+    [SerializeField] private EnemyDisplayManager enemyDisplayManager;
+
     // Player
     [Header("プレイヤー")]
     public Transform player;
@@ -65,12 +68,18 @@ public class BossPatternManager : MonoBehaviour
     // ボスが倒されたか
     private bool bossDefeated = false;
 
+    // ボスの行動コルーチン
+    private Coroutine bossPatternCoroutine;
+
+    // 現在盤面に残っているDamageArea
+    private GameObject currentDamageArea;
+
     void Start()
     {
         SetBossType();
         SetPlayerDamage();
 
-        StartCoroutine(BossPattern());
+        bossPatternCoroutine = StartCoroutine(BossPattern());
         Debug.Log(Life.Instance.lifepoint);
     }
 
@@ -168,8 +177,6 @@ public class BossPatternManager : MonoBehaviour
                 yield return new WaitForSeconds(stage3Cooldown);
             }
 
-
-            // Life消費処理
             if (!Tutorial.Instance.onTutorial)
             {
                 if (Life.Instance != null)
@@ -180,7 +187,15 @@ public class BossPatternManager : MonoBehaviour
 
             if (Life.Instance != null && Life.Instance.lifepoint <= 0)
             {
-                BossDefeated();
+                StartCoroutine(BossDefeated());
+
+                yield break;
+            }
+
+            if (DebugMode.Instance.win == true)
+            {
+                DebugMode.Instance.win = false;
+                StartCoroutine(BossDefeated());
 
                 yield break;
             }
@@ -544,7 +559,13 @@ public class BossPatternManager : MonoBehaviour
             yield break;
         }
 
-        GameObject warningArea =warningAreaSpawner.SpawnWarningArea();
+        if (currentDamageArea != null)
+        {
+            Destroy(currentDamageArea);
+            currentDamageArea = null;
+        }
+
+        GameObject warningArea = warningAreaSpawner.SpawnWarningArea();
 
         if (warningArea == null)
         {
@@ -554,11 +575,13 @@ public class BossPatternManager : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        GameObject bomb = warningAreaSpawner.SpawnBomb(warningArea.transform.position, player, stage3BombDamage);
+        Vector3 damagePosition = warningArea.transform.position;
+
+        GameObject bomb = warningAreaSpawner.SpawnBomb( damagePosition, player, stage3BombDamage);
 
         if (bomb == null)
         {
-            Debug.LogError("爆弾の生成に失敗しました");
+            Destroy(warningArea);
             yield break;
         }
 
@@ -567,10 +590,15 @@ public class BossPatternManager : MonoBehaviour
             yield return null;
         }
 
-        if (warningArea != null)
+        Destroy(warningArea);
+
+        currentDamageArea = warningAreaSpawner.SpawnDamageArea(damagePosition);
+
+        if (currentDamageArea == null)
         {
-            Destroy(warningArea);
+            yield break;
         }
+
     }
 
     // 3面パターン3
@@ -618,11 +646,28 @@ public class BossPatternManager : MonoBehaviour
         }
     }
 
+    [Header("Boss撃破演出")]
+    [SerializeField] private float bossDefeatDelay = 0.5f;
+    [SerializeField] private float sceneChangeDelay = 1.1f;
 
-    void BossDefeated()
+    public IEnumerator BossDefeated()
     {
         bossDefeated = true;
-        StopAllCoroutines();
+
+        if (bossPatternCoroutine != null)
+        {
+            StopCoroutine(bossPatternCoroutine);
+            bossPatternCoroutine = null;
+        }
+
+        yield return new WaitForSeconds(bossDefeatDelay);
+
+        if (enemyDisplayManager != null)
+        {
+            enemyDisplayManager.HideEnemy();
+        }
+
+        yield return new WaitForSeconds(sceneChangeDelay);
 
         SceneManager.LoadScene("gameclear");
     }

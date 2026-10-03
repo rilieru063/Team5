@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5711521667860962304}
   - component: {fileID: 4704755367035973143}
-  - component: {fileID: 475227315957972800}
   m_Layer: 0
   m_Name: BossLifeManager
   m_TagString: Untagged
@@ -47,17 +46,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossLifeManager
   hpBar: {fileID: 0}
   maxLifePoint: 100
---- !u!114 &475227315957972800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7201576578791765564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbe55705305d4c438a64a91438c0f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Life
-  lifepoint: 100
-  LifeText: {fileID: 0}
