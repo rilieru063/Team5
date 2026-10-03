@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] Borders borders;
 
     [SerializeField, Range(0f, 1f)]
-    private float followStrength;
+    private float followStrength = 0.01f;
 
     private float normalFollowStrength;
 
