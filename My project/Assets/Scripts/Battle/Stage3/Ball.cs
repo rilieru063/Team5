@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float maxY = 4f;
 
     [Header("ƒvƒŒƒCƒ„[‚Ö‚Ì“–‚½‚è”»’è")]
-    [SerializeField] private float damageRadius = 0.5f;
+    [SerializeField] private float damageRadius = 1f;
 
     private Transform player;
 

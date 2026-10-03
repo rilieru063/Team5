@@ -626,6 +626,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902b8020f03fec7419213d2862c0d190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BalloonSpawner
+--- !u!1001 &675458762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596754416518843702, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6903878913252100366, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: m_Name
+      value: MissileSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154210803261986607, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: lowerY
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154210803261986607, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: upperY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9154210803261986607, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+      propertyPath: missilePrefab
+      value: 
+      objectReference: {fileID: 312570227360237437, guid: 741a711e438d06240bea4c6f9a2ac46a, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+--- !u!114 &675458763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9154210803261986607, guid: d93fd9fa3836e14468e76fd5f7adf87b, type: 3}
+  m_PrefabInstance: {fileID: 675458762}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ed0e0f41e84c045ae1f605632c3dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissileSpawner
 --- !u!1 &879539965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,13 +1279,17 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3365403398369913155, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3545166488522795042, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6310123735351317780, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}
       propertyPath: followStrength
-      value: 0.005
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6310123735351317780, guid: 13417fc0256cedc4da416e1487e4f841, type: 3}
       propertyPath: spiderWebFollowStrength
@@ -1385,6 +1469,10 @@ PrefabInstance:
       propertyPath: balloonSpawner
       value: 
       objectReference: {fileID: 636245420}
+    - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
+      propertyPath: missileSpawner
+      value: 
+      objectReference: {fileID: 675458763}
     - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: spiderWebPrefab
       value: 
@@ -1618,6 +1706,7 @@ SceneRoots:
   - {fileID: 756135622009948307}
   - {fileID: 1941852656194984831}
   - {fileID: 8373081221244441925}
+  - {fileID: 675458762}
   - {fileID: 81200855}
   - {fileID: 399853655}
   - {fileID: 338473257}

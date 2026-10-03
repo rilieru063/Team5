@@ -156,10 +156,6 @@ public class BossPatternManager : MonoBehaviour
                 {
                     Life.Instance.lifeminus(1);
                 }
-                else
-                {
-                    Debug.LogError("Life.Instance ‚ª null‚Å‚·");
-                }
             }
 
             if (Life.Instance != null && Life.Instance.lifepoint <= 0)
