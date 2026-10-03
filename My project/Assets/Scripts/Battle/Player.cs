@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -22,10 +23,21 @@ public class Player : MonoBehaviour
 
     private int damageAmount = 1;
 
+    [Header("É_ÉÅÅ[ÉWñ≥ìG")]
+    [SerializeField] private float invincibleTime = 0.5f;
+
+    [SerializeField] private float blinkInterval = 0.1f;
+
+    private bool isInvincible = false;
+
+    private SpriteRenderer spriteRenderer;
+
 
     private void Start()
     {
         normalFollowStrength = followStrength;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -34,28 +46,44 @@ public class Player : MonoBehaviour
         damageAmount = damage;
     }
 
+
     public void TakeDamage()
     {
+        if (isInvincible)
+            return;
+
         LifeManager.Instance.Damage(damageAmount);
+
+        StartCoroutine(InvincibleCoroutine());
     }
+
 
     public void TakeDamage(int damage)
     {
+        if (isInvincible)
+            return;
+
         LifeManager.Instance.Damage(damage);
+
+        StartCoroutine(InvincibleCoroutine());
     }
 
 
     private void Update()
     {
-        Vector3 mousePos =Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        mousePos.x = Mathf.Clamp(mousePos.x,borders.xMin,borders.xMax);
+        mousePos.x = Mathf.Clamp(mousePos.x, borders.xMin, borders.xMax);
 
-        mousePos.y = Mathf.Clamp(mousePos.y,borders.yMin,borders.yMax);
+        mousePos.y = Mathf.Clamp(mousePos.y, borders.yMin, borders.yMax);
 
         mousePos.z = 0f;
 
-        transform.position = Vector3.Lerp(transform.position,mousePos,followStrength);
+        transform.position = Vector3.Lerp(
+            transform.position,
+            mousePos,
+            followStrength
+        );
     }
 
 
@@ -63,7 +91,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            LifeManager.Instance.Damage(damageAmount);
+            TakeDamage();
         }
 
         if (collision.gameObject.CompareTag("SpiderWeb"))
@@ -89,5 +117,25 @@ public class Player : MonoBehaviour
             spiderWebCount = 0;
             followStrength = normalFollowStrength;
         }
+    }
+
+    private IEnumerator InvincibleCoroutine()
+    {
+        isInvincible = true;
+
+        float timer = 0f;
+
+        while (timer < invincibleTime)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+
+            yield return new WaitForSeconds(blinkInterval);
+
+            timer += blinkInterval;
+        }
+
+        spriteRenderer.enabled = true;
+
+        isInvincible = false;
     }
 }
