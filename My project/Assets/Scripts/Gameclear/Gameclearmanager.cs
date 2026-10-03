@@ -25,12 +25,14 @@ public class GameClearManager : MonoBehaviour
     // 今のステージをもう一度
     public void Replay()
     {
+        Life.Instance.lifedefinition(50);
         StartCoroutine(ChangeScene("Main"));
     }
 
     // タイトルへ戻る
     public void BackToTitle()
     {
+        Life.Instance.lifedefinition(50);
         StartCoroutine(ChangeScene("Title"));
     }
 
