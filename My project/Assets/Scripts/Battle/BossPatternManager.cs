@@ -37,11 +37,21 @@ public class BossPatternManager : MonoBehaviour
     [SerializeField] private int stage1BossDamage = 2;
     [SerializeField] private int stage2BossDamage = 3;
 
+    [Header("2面ボス攻撃後の残留時間")]
+    [SerializeField] private float stage2Pattern2StayTime = 1.0f;
+    [SerializeField] private float stage2Pattern3StayTime = 1.0f;
+
     [Header("3面ボス攻撃ダメージ")]
     [SerializeField] private int stage3BalloonDamage = 5;
     [SerializeField] private int stage3BombDamage = 10;
     [SerializeField] private int stage3BallDamage = 5;
     [SerializeField] private int stage3MissileDamage = 25;
+
+    [Header("次の攻撃までのクールダウン")]
+    [SerializeField] private float tutorialCooldown = 1.0f;
+    [SerializeField] private float stage1Cooldown = 0.8f;
+    [SerializeField] private float stage2Cooldown = 1.0f;
+    [SerializeField] private float stage3Cooldown = 1.0f;
 
     // 前回のナイフパターン
     private int lastPattern = -1;
@@ -130,26 +140,36 @@ public class BossPatternManager : MonoBehaviour
             if (bossType == BossType.TutorialBoss)
             {
                 yield return StartCoroutine(TutorialBossPattern());
+
+                yield return new WaitForSeconds(tutorialCooldown);
             }
 
             // Stage1
             else if (bossType == BossType.Stage1Boss)
             {
                 yield return StartCoroutine(Stage1BossPattern());
+
+                yield return new WaitForSeconds(stage1Cooldown);
             }
 
+            // Stage2
             else if (bossType == BossType.Stage2Boss)
             {
                 yield return StartCoroutine(Stage2BossPattern());
+
+                yield return new WaitForSeconds(stage2Cooldown);
             }
 
+            // Stage3
             else if (bossType == BossType.Stage3Boss)
             {
                 yield return StartCoroutine(Stage3BossPattern());
+
+                yield return new WaitForSeconds(stage3Cooldown);
             }
 
 
-            //Life消費処理
+            // Life消費処理
             if (!Tutorial.Instance.onTutorial)
             {
                 if (Life.Instance != null)
@@ -164,12 +184,9 @@ public class BossPatternManager : MonoBehaviour
 
                 yield break;
             }
-
-
-            // 次の攻撃まで待つ
-            yield return new WaitForSeconds(0.8f);
         }
     }
+
 
 
     // チュートリアルボス
@@ -432,6 +449,7 @@ public class BossPatternManager : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSeconds(stage2Pattern2StayTime);
 
         for (int i = 0; i < legs.Length; i++)
         {
@@ -440,6 +458,7 @@ public class BossPatternManager : MonoBehaviour
                 Destroy(legs[i]);
             }
         }
+
     }
 
     // 2面ステージパターン3
@@ -493,6 +512,8 @@ public class BossPatternManager : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSeconds(stage2Pattern3StayTime);
+
         for (int i = 0; i < legs.Length; i++)
         {
             if (legs[i] != null)
@@ -512,8 +533,6 @@ public class BossPatternManager : MonoBehaviour
         }
 
         yield return StartCoroutine(balloonSpawner.SpawnPattern1(stage3BalloonDamage));
-
-        //yield return new WaitForSeconds(2f);
     }
 
     // 3面パターン2
@@ -552,8 +571,6 @@ public class BossPatternManager : MonoBehaviour
         {
             Destroy(warningArea);
         }
-
-        //yield return new WaitForSeconds(0.2f);
     }
 
     // 3面パターン3
@@ -577,8 +594,6 @@ public class BossPatternManager : MonoBehaviour
         {
             yield return null;
         }
-
-        //yield return new WaitForSeconds(0.2f);
     }
 
     // 3面パターン4
@@ -601,8 +616,6 @@ public class BossPatternManager : MonoBehaviour
         {
             yield return null;
         }
-
-        //yield return new WaitForSeconds(0.2f);
     }
 
 
