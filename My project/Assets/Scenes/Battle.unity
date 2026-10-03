@@ -1482,6 +1482,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
+      propertyPath: stage3Cooldown
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: spiderWebPrefab
       value: 
       objectReference: {fileID: 8630323811767337367, guid: c5e6da40bf3df214c83d6c7dc6af5b4c, type: 3}
