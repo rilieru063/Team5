@@ -8,6 +8,7 @@ public class GameClearManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip hoverSE;
     public AudioClip clickSE;
+    public AudioClip clearSE; // ★ ゲームクリア時のSE
 
     // UI
     public GameObject clearUI;
@@ -26,6 +27,9 @@ public class GameClearManager : MonoBehaviour
 
         // FadePanelは透明
         fadeCanvasGroup.alpha = 0f;
+
+        // ★ ゲームクリア画面に来た瞬間にSE
+        audioSource.PlayOneShot(clearSE);
     }
 
     // カーソルを乗せたとき

@@ -4,14 +4,23 @@ using UnityEngine.SceneManagement;
 
 public class GameOverSceneManager : MonoBehaviour
 {
+    // 効果音
     public AudioSource audioSource;
     public AudioClip hoverSE;
     public AudioClip clickSE;
+    public AudioClip gameOverSE;
 
-    // シーン切り替えまでの待ち時間
+    // シーン切り替えまでの時間
     public float sceneChangeDelay = 0.3f;
 
-    // カーソルがボタンに乗ったとき
+    // GameOverシーンに切り替わった瞬間
+    private void Start()
+    {
+        // ゲームオーバーSEを鳴らす
+        audioSource.PlayOneShot(gameOverSE);
+    }
+
+    // カーソルをボタンに乗せたとき
     public void PlayHoverSE()
     {
         audioSource.PlayOneShot(hoverSE);
@@ -20,23 +29,22 @@ public class GameOverSceneManager : MonoBehaviour
     // リトライ
     public void Retry()
     {
-        SceneManager.LoadScene("Main");
-        Life.Instance.lifedefinition(50);
+        StartCoroutine(ChangeScene("Main"));
     }
 
-    // タイトルへ戻る
+    // タイトルに戻る
     public void BackToTitle()
     {
-        Life.Instance.lifedefinition(50);
         StartCoroutine(ChangeScene("Title"));
     }
 
+    // シーン切り替え
     private IEnumerator ChangeScene(string sceneName)
     {
-        // クリック音
+        // クリックSE
         audioSource.PlayOneShot(clickSE);
 
-        // 少し待つ
+        // SEが鳴るのを少し待つ
         yield return new WaitForSeconds(sceneChangeDelay);
 
         // シーン移動
