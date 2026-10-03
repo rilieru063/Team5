@@ -825,6 +825,10 @@ PrefabInstance:
       propertyPath: lifepoint
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 475227315957972800, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4704755367035973143, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
       propertyPath: hpBar
       value: 
@@ -835,11 +839,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711521667860962304, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.08766
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711521667860962304, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.49734
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5711521667860962304, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -877,7 +881,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossLifeManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 475227315957972800, guid: f74d9b6d2e2773a44bf3ac6d98b31d36, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
