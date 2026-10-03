@@ -635,9 +635,9 @@ MonoBehaviour:
   clearUI: {fileID: 1262080631}
   stageImage: {fileID: 1552874730}
   stageSprites:
-  - {fileID: -1180456281992119290, guid: 5daec60ed04c49243b17a7a34a3f6729, type: 3}
-  - {fileID: -4603835027172174794, guid: 1fdb40ee2f48b39489ee021f684f0885, type: 3}
-  - {fileID: 2972915244330628007, guid: 8cc1ffc40d8c1f0498ba5ad810f47de9, type: 3}
+  - {fileID: -1331080360463316374, guid: 2b1e37e3cf533f14da34a73f2a3e1ccd, type: 3}
+  - {fileID: -2165208721825068135, guid: 30eaba6259f03fe4d8a49607fada527b, type: 3}
+  - {fileID: -8018191698164304724, guid: 333c6d2b448967248907f0088f1d1aab, type: 3}
   fadeCanvasGroup: {fileID: 1482222474}
   fadeDuration: 1
   stageImageDuration: 2
