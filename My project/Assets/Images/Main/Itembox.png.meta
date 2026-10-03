@@ -3,8 +3,26 @@ guid: 6cbd105d0cbe04c41bf381116c078db1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 16496890861179950
-    second: gomibako_futa_0
+      213: -8455870655496193248
+    second: Itembox_0
+  - first:
+      213: 2462275882394454659
+    second: Itembox_1
+  - first:
+      213: 7875671880626089599
+    second: Itembox_2
+  - first:
+      213: 2450274760661002020
+    second: Itembox_3
+  - first:
+      213: 4695565819149332044
+    second: Itembox_4
+  - first:
+      213: -1758717810653538656
+    second: Itembox_5
+  - first:
+      213: 1552916165334603900
+    second: Itembox_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,30 +140,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gomibako_futa_0
+      name: Itembox_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 500
-        height: 531
+        x: 77
+        y: 83
+        width: 1131
+        height: 1126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +159,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e24dda7b5db9a3000800000000000000
-      internalID: 16496890861179950
+      spriteID: 02bff70a076b6aa80800000000000000
+      internalID: -8455870655496193248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_1
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 875
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38a022d8ed2cb2220800000000000000
+      internalID: 2462275882394454659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_2
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 875
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7e204c29d10c4d60800000000000000
+      internalID: 7875671880626089599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_3
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 744
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427ed47a9ef110220800000000000000
+      internalID: 2450274760661002020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_4
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 102
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4eacddfb300a2140800000000000000
+      internalID: 4695565819149332044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_5
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 88
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6d7d32877c797e0800000000000000
+      internalID: -1758717810653538656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Itembox_6
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 88
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c781bb056011d8510800000000000000
+      internalID: 1552916165334603900
       vertices: []
       indices: 
       edges: []
@@ -174,7 +311,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      gomibako_futa_0: 16496890861179950
+      Itembox_0: -8455870655496193248
+      Itembox_1: 2462275882394454659
+      Itembox_2: 7875671880626089599
+      Itembox_3: 2450274760661002020
+      Itembox_4: 4695565819149332044
+      Itembox_5: -1758717810653538656
+      Itembox_6: 1552916165334603900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
