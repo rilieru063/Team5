@@ -598,17 +598,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Tutorial
   tutorialImage: {fileID: 879539967}
   tutorialPages:
-  - {fileID: 6663841525623665819, guid: 2d7e08b2f377dc341824316a3036cf90, type: 3}
-  - {fileID: 9055085296163755439, guid: 22650d5c160acba418493eef194ddc8b, type: 3}
-  - {fileID: 5020296527248882466, guid: dd206cf66124c2442b16a21f2709286d, type: 3}
-  - {fileID: 5555921646746413605, guid: b7f0fc447dca0714f8dd5fa296181b28, type: 3}
-  - {fileID: -3147591041614878760, guid: 425b17a6df17853449da0de576fec3dd, type: 3}
-  - {fileID: 4575064947617878892, guid: 7acb2dc13324ab940a91ddd77e09e514, type: 3}
-  - {fileID: 3587141560910765710, guid: 3dce2f21be97cb4438ca517a721483e8, type: 3}
-  - {fileID: 4399963456049192973, guid: 135cc008fb7215840b9ae0a2bbe8493b, type: 3}
-  - {fileID: -3040758998549487544, guid: d016031392e62644d95818cc2fe1c349, type: 3}
-  - {fileID: -2757950986198270302, guid: e90f2b6bb2b1ae94eabf8484e4b30ee5, type: 3}
-  - {fileID: -820307451781987897, guid: c58dad2cd1bdb0749b76a38fc14f5da8, type: 3}
+  - {fileID: 3648940707581481846, guid: 2df3e6dd64eeef24997f6a88389c37a5, type: 3}
+  - {fileID: 6268524110994651486, guid: 17a7efe294aea6f4e880bbe454e26bf7, type: 3}
+  - {fileID: -2051190666219459448, guid: 476a1b1b1410c3d499772208b2216b41, type: 3}
+  - {fileID: 4348056306926190238, guid: eadcc66c0fe1e144ba0e2c09a30c98fa, type: 3}
+  - {fileID: 5724021604379064088, guid: bcc76dd16b6c6884fa417233fa868255, type: 3}
+  - {fileID: -5121615948646843558, guid: 0d0f7f5ea17031d439449ee2cec99d4d, type: 3}
   onTutorial: 1
 --- !u!4 &579338490 stripped
 Transform:

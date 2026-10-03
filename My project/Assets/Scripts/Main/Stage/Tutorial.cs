@@ -41,7 +41,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (sceneName == "Battle")
         {
-            currentPage = 6;
+            currentPage = 3;
             Pagedefinition(currentPage);
         }
         Debug.Log(onTutorialComplete);
@@ -56,9 +56,9 @@ public class Tutorial : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (sceneName == "Main")
-                NextPage(5);
+                NextPage(2);
             if (sceneName == "Battle")
-                NextPage(10);
+                NextPage(5);
         }
     }
 
