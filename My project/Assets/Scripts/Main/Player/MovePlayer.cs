@@ -157,18 +157,16 @@ public class MovePlayer : MonoBehaviour
         if (goal == null)
             return;
 
+        if(DebugMode.Instance.clear == true)
+        {
+            DebugMode.Instance.clear = false;
+            SceneManager.LoadScene("gameclear");
+        }
+
         if (GridX == goal.GridX &&
             GridY == goal.GridY)
         {
             Debug.Log("Stage Clear!");
-            /*int num = Life.Instance.lifepoint;
-            Life.Instance.lifedefinition(num / 2);
-            if (!Tutorial.onTutorialComplete)
-            {
-                Life.Instance.lifedefinition(20);
-                Tutorial.Instance.onTutorial = true;
-            }
-            SceneManager.LoadScene("Battle");*/
             SceneManager.LoadScene("gameclear");
         }
     }
