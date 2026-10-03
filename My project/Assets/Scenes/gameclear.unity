@@ -632,6 +632,7 @@ MonoBehaviour:
   audioSource: {fileID: 811099031}
   hoverSE: {fileID: 8300000, guid: 4d8fe437a845f3e4f9ac0205d1b7e89d, type: 3}
   clickSE: {fileID: 8300000, guid: 540d0132d2e0038439a53c91204cc474, type: 3}
+  clearSE: {fileID: 8300000, guid: f379d3a0da1ebf74d804595a1f0a972a, type: 3}
   clearUI: {fileID: 1262080631}
   stageImage: {fileID: 1552874730}
   stageSprites:

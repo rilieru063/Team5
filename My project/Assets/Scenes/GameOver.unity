@@ -897,6 +897,7 @@ MonoBehaviour:
   audioSource: {fileID: 1433550546}
   hoverSE: {fileID: 8300000, guid: 4d8fe437a845f3e4f9ac0205d1b7e89d, type: 3}
   clickSE: {fileID: 8300000, guid: 540d0132d2e0038439a53c91204cc474, type: 3}
+  gameOverSE: {fileID: 8300000, guid: 316253a1b5e206640802a34560def156, type: 3}
   sceneChangeDelay: 0.5
 --- !u!4 &1433550545
 Transform:
