@@ -9,10 +9,10 @@ public class MissileSpawner : MonoBehaviour
     [SerializeField] private float spawnX = -7f;
 
     [Header("ã”¼•ª")]
-    [SerializeField] private float upperY = 2f;
+    [SerializeField] private float upperY = 0f;
 
     [Header("‰º”¼•ª")]
-    [SerializeField] private float lowerY = -2f;
+    [SerializeField] private float lowerY = -4f;
 
 
     public GameObject SpawnMissile(Transform player,int damage)

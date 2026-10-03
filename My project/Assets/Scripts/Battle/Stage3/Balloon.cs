@@ -42,6 +42,7 @@ public class Balloon : MonoBehaviour
             if (player != null)
             {
                 player.TakeDamage(damage);
+                Destroy(gameObject);
             }
         }
     }
