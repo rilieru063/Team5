@@ -1,3 +1,4 @@
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,41 +14,103 @@ public class GameOverSceneManager : MonoBehaviour
     // シーン切り替えまでの時間
     public float sceneChangeDelay = 0.3f;
 
-    // GameOverシーンに切り替わった瞬間
+    // ボタン連打防止
+    private bool isChangingScene = false;
+
+    // GameOver画面になった瞬間
     private void Start()
     {
-        // ゲームオーバーSEを鳴らす
-        audioSource.PlayOneShot(gameOverSE);
+        // ゲームオーバーSEを再生
+        if (audioSource != null && gameOverSE != null)
+        {
+            audioSource.PlayOneShot(gameOverSE);
+        }
     }
 
-    // カーソルをボタンに乗せたとき
+    // カーソルを乗せたとき
     public void PlayHoverSE()
     {
-        audioSource.PlayOneShot(hoverSE);
+        if (!isChangingScene &&
+            audioSource != null &&
+            hoverSE != null)
+        {
+            audioSource.PlayOneShot(hoverSE);
+        }
     }
 
-    // リトライ
+    // RETRY
     public void Retry()
     {
+        if (isChangingScene) return;
+
+        isChangingScene = true;
+
+        // 体力を50に戻す
+        ResetLife();
+
+        // 同じステージから再開
         StartCoroutine(ChangeScene("Main"));
     }
 
-    // タイトルに戻る
+    // TITLE
     public void BackToTitle()
     {
-        StartCoroutine(ChangeScene("Title"));
+        if (isChangingScene) return;
+
+        isChangingScene = true;
+
+        // 体力を50に戻す
+        ResetLife();
+
+        StartCoroutine(BackToTitleSequence());
     }
 
-    // シーン切り替え
+    // 体力を50に戻す
+    private void ResetLife()
+    {
+        if (Life.Instance != null)
+        {
+            Life.Instance.lifedefinition(50);
+        }
+    }
+
+    // TITLE専用処理
+    private IEnumerator BackToTitleSequence()
+    {
+        // クリックSE
+        PlayClickSE();
+
+        yield return new WaitForSecondsRealtime(sceneChangeDelay);
+
+        // ステージ数を0に戻す
+        StageManager.CurrentStage = 0;
+
+        // チュートリアルを初期状態に戻す
+        Tutorial.onTutorialComplete = false;
+
+        // タイトル画面へ
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Title");
+    }
+
+    // RETRY用のシーン切り替え
     private IEnumerator ChangeScene(string sceneName)
     {
         // クリックSE
-        audioSource.PlayOneShot(clickSE);
+        PlayClickSE();
 
-        // SEが鳴るのを少し待つ
-        yield return new WaitForSeconds(sceneChangeDelay);
+        yield return new WaitForSecondsRealtime(sceneChangeDelay);
 
-        // シーン移動
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
+    }
+
+    // クリックSE
+    private void PlayClickSE()
+    {
+        if (audioSource != null && clickSE != null)
+        {
+            audioSource.PlayOneShot(clickSE);
+        }
     }
 }
