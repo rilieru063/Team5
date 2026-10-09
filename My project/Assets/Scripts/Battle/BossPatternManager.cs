@@ -36,7 +36,7 @@ public class BossPatternManager : MonoBehaviour
 
     // PlayerDamage
     [Header("プレイヤーへのダメージ")]
-    [SerializeField] private int tutorialBossDamage = 10;
+    [SerializeField] private int tutorialBossDamage = 15;
     [SerializeField] private int stage1BossDamage = 3;
     [SerializeField] private int stage2BossDamage = 9;
 
@@ -215,7 +215,7 @@ public class BossPatternManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 if (dropSpawner != null)
-                { dropSpawner.SpawnDrop(0.75f,0f); }
+                { dropSpawner.SpawnDrop(0.5f,0f); }
 
                 // 次の落下まで
                 yield return new WaitForSeconds(0.05f);

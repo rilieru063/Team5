@@ -1622,7 +1622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: tutorialBossDamage
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8960900103333584441, guid: 25e701a82d0a5ba4f90202a87a129940, type: 3}
       propertyPath: warningAreaSpawner
