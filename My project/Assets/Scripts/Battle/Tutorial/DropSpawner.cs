@@ -13,7 +13,7 @@ public class DropSpawner : MonoBehaviour
     public float maxX = 3f;
 
     [Header("出現Y座標")]
-    public float spawnY = 6f;
+    public float spawnY = 8.8f;
 
 // 落下オブジェクトを生成
     public void SpawnDrop(float size, float delay)

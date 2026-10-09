@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.0635, y: 0.0635, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -82,9 +82,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -84144442347387891, guid: 2054a7ac5661eed4abe089cf87ad0ff2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,7 +111,10 @@ MonoBehaviour:
     xMax: 2.6
     yMin: -4.25
     yMax: 0.25
-  followStrength: 0.0075
+  followStrength: 0.01
+  spiderWebFollowStrength: 0.0025
+  invincibleTime: 0.5
+  blinkInterval: 0.1
 --- !u!50 &6547204165130624086
 Rigidbody2D:
   serializedVersion: 5
