@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] Borders borders;
 
     [SerializeField, Range(0f, 1f)]
-    private float followStrength = 0.01f;
+    private float followStrength = 0.175f;
 
     private float normalFollowStrength;
 
@@ -32,12 +32,21 @@ public class Player : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private AudioSource audioSource;
+
 
     private void Start()
     {
         normalFollowStrength = followStrength;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
 
