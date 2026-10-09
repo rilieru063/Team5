@@ -36,7 +36,7 @@ public class BossPatternManager : MonoBehaviour
 
     // PlayerDamage
     [Header("プレイヤーへのダメージ")]
-    [SerializeField] private int tutorialBossDamage = 20;
+    [SerializeField] private int tutorialBossDamage = 10;
     [SerializeField] private int stage1BossDamage = 3;
     [SerializeField] private int stage2BossDamage = 9;
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4430437712665297345}
   - component: {fileID: 6274473033642737230}
-  - component: {fileID: 4621540819306369947}
+  - component: {fileID: 6644673120454966928}
   - component: {fileID: 8344284555143074906}
   m_Layer: 7
   m_Name: Drop
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -93,8 +93,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!58 &4621540819306369947
-CircleCollider2D:
+--- !u!70 &6644673120454966928
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,12 +123,13 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -2.3}
-  m_Radius: 2.75
+  m_Offset: {x: 0, y: -2}
+  m_Size: {x: 5.75, y: 5.75}
+  m_Direction: 0
 --- !u!114 &8344284555143074906
 MonoBehaviour:
   m_ObjectHideFlags: 0
