@@ -126,7 +126,7 @@ public class GameClearManager : MonoBehaviour
     {
         if (Life.Instance != null)
         {
-            Life.Instance.lifedefinition(100);
+            Life.Instance.lifedefinition(75);
         }
     }
 

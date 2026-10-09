@@ -18,7 +18,7 @@ public class MovePlayer : MonoBehaviour
     void Start()
     {
         grid = FindFirstObjectByType<GridLines>();
-        Life.Instance.lifedefinition(100);
+        Life.Instance.lifedefinition(75);
     }
 
     void Update()
