@@ -290,7 +290,7 @@ public class BossPatternManager : MonoBehaviour
     {
         int pattern;
 
-        do{pattern = Random.Range(0, 4);}
+        do{pattern = Random.Range(0, 5);}
         while (pattern == lastStage3Pattern);
 
         lastStage3Pattern = pattern;
@@ -303,7 +303,7 @@ public class BossPatternManager : MonoBehaviour
                 break;
 
             case 1:
-                yield return StartCoroutine(Stage3Pattern2());
+                 yield return StartCoroutine(Stage3Pattern2());
                 break;
 
             case 2:
@@ -312,6 +312,10 @@ public class BossPatternManager : MonoBehaviour
 
             case 3:
                 yield return StartCoroutine(Stage3Pattern4());
+                break;
+
+            case 4:
+                yield return StartCoroutine(Stage3Pattern5());
                 break;
         }
     }
@@ -644,6 +648,36 @@ public class BossPatternManager : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    // 3面パターン5
+    IEnumerator Stage3Pattern5()
+    {
+        if (missileSpawner == null)
+        {
+            Debug.LogError("MissileSpawnerが設定されていません");
+            yield break;
+        }
+
+        float interval = 0.5f;
+
+        // 左下から上へ
+        missileSpawner.SpawnDirectionalMissile(new Vector3(-1.75f, -8f, 0f),Vector2.up,stage3MissileDamage);
+
+        yield return new WaitForSeconds(interval);
+
+        // 左から右へ
+        missileSpawner.SpawnDirectionalMissile(new Vector3(-8f, -3.5f, 0f),Vector2.right,stage3MissileDamage);
+
+        yield return new WaitForSeconds(interval);
+
+        // 右上から下へ
+        missileSpawner.SpawnDirectionalMissile(new Vector3(1.75f, 8f, 0f),Vector2.down,stage3MissileDamage);
+
+        yield return new WaitForSeconds(interval);
+
+        // 右から左へ
+        missileSpawner.SpawnDirectionalMissile(new Vector3(8f, -0.5f, 0f),Vector2.left,stage3MissileDamage);
     }
 
     [Header("Boss撃破演出")]
