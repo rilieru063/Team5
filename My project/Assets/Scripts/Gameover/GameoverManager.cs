@@ -70,7 +70,7 @@ public class GameOverSceneManager : MonoBehaviour
     {
         if (Life.Instance != null)
         {
-            Life.Instance.lifedefinition(50);
+            Life.Instance.lifedefinition(100);
         }
     }
 
