@@ -6,92 +6,122 @@ using UnityEngine.SceneManagement;
 
 public class GameClearManager : MonoBehaviour
 {
-    // 効果音
+    [Header("効果音")]
     public AudioSource audioSource;
     public AudioClip hoverSE;
     public AudioClip clickSE;
     public AudioClip clearSE;
 
-    // UI
-    public GameObject clearUI;
+    [Header("クリア画面")]
+    public GameObject clearUI;       // 通常クリア
+    public GameObject allClearUI;    // 最終クリア
+
+    [Header("ステージ画像")]
     public Image stageImage;
     public Sprite[] stageSprites;
-    public CanvasGroup fadeCanvasGroup;
 
-    // 時間調整
+    [Header("フェード")]
+    public CanvasGroup fadeCanvasGroup;
     public float fadeDuration = 1.0f;
     public float stageImageDuration = 2.0f;
+
+    // 最終ステージ番号
+    private const int FinalStage = 3;
 
     private bool isChangingScene = false;
 
     private void Start()
     {
-        // 最初はステージ画像を隠す
+        // 時間を通常に戻す
+        Time.timeScale = 1f;
+
+        // ステージ画像は最初は非表示
         if (stageImage != null)
         {
             stageImage.gameObject.SetActive(false);
         }
 
-        // FadePanelは透明
+        // フェードパネルを透明にする
         if (fadeCanvasGroup != null)
         {
             fadeCanvasGroup.alpha = 0f;
         }
 
-        // ゲームクリアSE
+        // 最終ステージをクリアしたか判定
+        bool isFinalClear =
+            StageManager.CurrentStage >= FinalStage;
+
+        // 通常クリア画面の切り替え
+        if (clearUI != null)
+        {
+            clearUI.SetActive(!isFinalClear);
+        }
+
+        // 最終クリア画面の切り替え
+        if (allClearUI != null)
+        {
+            allClearUI.SetActive(isFinalClear);
+        }
+
+        // クリアSE
         if (audioSource != null && clearSE != null)
         {
             audioSource.PlayOneShot(clearSE);
         }
     }
 
-    // カーソルを乗せたとき
+    // ボタンにカーソルを乗せたとき
     public void PlayHoverSE()
     {
-        if (!isChangingScene &&
-            audioSource != null &&
-            hoverSE != null)
+        if (isChangingScene) return;
+
+        if (audioSource != null && hoverSE != null)
         {
             audioSource.PlayOneShot(hoverSE);
         }
     }
 
-    // NEXT STAGE
+    // NEXT STAGEボタン
     public void NextStage()
     {
+        // 最終ステージでは次に進まない
+        if (StageManager.CurrentStage >= FinalStage)
+        {
+            return;
+        }
+
         if (isChangingScene) return;
 
         isChangingScene = true;
         StartCoroutine(NextStageSequence());
     }
 
-    // REPLAY
+    // REPLAYボタン
     public void Replay()
     {
         if (isChangingScene) return;
 
         isChangingScene = true;
 
-        // Lifeが存在する場合だけ体力回復
         ResetLife();
 
         StartCoroutine(ChangeScene("Main"));
     }
 
-    // TITLE
+    // TITLEボタン
+    // 通常クリア・最終クリア共通
     public void BackToTitle()
     {
         if (isChangingScene) return;
 
         isChangingScene = true;
 
-        // Lifeが存在する場合だけ体力回復
         ResetLife();
 
         StartCoroutine(BackToTitleSequence());
     }
 
-    // 体力を50に戻す
+    // 体力を初期化
     private void ResetLife()
     {
         if (Life.Instance != null)
@@ -100,70 +130,74 @@ public class GameClearManager : MonoBehaviour
         }
     }
 
-    // TITLEに戻る専用処理
+    // タイトルへ戻る
     private IEnumerator BackToTitleSequence()
     {
-        // クリックSE
         PlayClickSE();
 
         yield return new WaitForSecondsRealtime(0.3f);
 
-        // ★ ステージ数を最初に戻す
+        // ステージを最初に戻す
         StageManager.CurrentStage = 0;
 
-        // ★ チュートリアルも初期状態へ
+        // チュートリアルもリセット
         Tutorial.onTutorialComplete = false;
 
-        // タイトル画面へ
         Time.timeScale = 1f;
+
         SceneManager.LoadScene("Title");
     }
 
-    // NEXT STAGEの演出
+    // 次のステージへ進む
     private IEnumerator NextStageSequence()
     {
-        // クリックSE
         PlayClickSE();
 
-        // ① 黒にフェードアウト
+        // 画面を暗くする
         yield return StartCoroutine(Fade(0f, 1f));
 
-        // ② GAME CLEAR画面を消す
+        // 通常クリアUIを非表示
         if (clearUI != null)
         {
             clearUI.SetActive(false);
         }
 
-        // 次のステージ画像を設定
+        // 次のステージ画像を表示
         if (stageImage != null &&
             stageSprites != null &&
             StageManager.CurrentStage >= 0 &&
             StageManager.CurrentStage < stageSprites.Length)
         {
-            stageImage.sprite = stageSprites[StageManager.CurrentStage];
+            stageImage.sprite =
+                stageSprites[StageManager.CurrentStage];
+
             stageImage.gameObject.SetActive(true);
         }
 
-        // ③ ステージ画像へフェードイン
+        // 画面を明るくする
         yield return StartCoroutine(Fade(1f, 0f));
 
-        // ④ ステージ画像を表示
-        yield return new WaitForSecondsRealtime(stageImageDuration);
+        // ステージ画像を表示して待機
+        yield return new WaitForSecondsRealtime(
+            stageImageDuration
+        );
 
-        // ⑤ 黒にフェードアウト
+        // 再び暗くする
         yield return StartCoroutine(Fade(0f, 1f));
 
-        // 次のステージへ
+        // ステージを1つ進める
         StageManager.CurrentStage++;
 
-        // チュートリアル完了
+        // チュートリアル完了状態にする
         Tutorial.onTutorialComplete = true;
 
         Time.timeScale = 1f;
+
+        // メインシーンへ
         SceneManager.LoadScene("Main");
     }
 
-    // REPLAY用
+    // シーン変更
     private IEnumerator ChangeScene(string sceneName)
     {
         PlayClickSE();
@@ -171,10 +205,11 @@ public class GameClearManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.3f);
 
         Time.timeScale = 1f;
+
         SceneManager.LoadScene(sceneName);
     }
 
-    // クリックSE
+    // クリックSE再生
     private void PlayClickSE()
     {
         if (audioSource != null && clickSE != null)
@@ -200,8 +235,11 @@ public class GameClearManager : MonoBehaviour
         {
             time += Time.unscaledDeltaTime;
 
-            fadeCanvasGroup.alpha =
-                Mathf.Lerp(startAlpha, endAlpha, time / duration);
+            fadeCanvasGroup.alpha = Mathf.Lerp(
+                startAlpha,
+                endAlpha,
+                time / duration
+            );
 
             yield return null;
         }
