@@ -3,7 +3,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     [Header("落下速度")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 25f;
 
     [Header("着弾時のダメージ範囲")]
     [SerializeField] private float damageRadius = 1.5f;

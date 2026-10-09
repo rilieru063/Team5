@@ -34,7 +34,7 @@ public class Knife : MonoBehaviour
 
     IEnumerator StartMoving(float delay)
     {
-        yield return new WaitForSeconds(delay); ;// w’è•b”’â~
+        yield return new WaitForSeconds(delay);// w’è•b”’â~
             
         canMove = true;
     }

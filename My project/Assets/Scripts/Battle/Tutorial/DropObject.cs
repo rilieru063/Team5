@@ -6,7 +6,7 @@ public class DropObject : MonoBehaviour
     private bool canMove = false;
 
     [Header("‰æ–ÊŠO”»’è")]
-    public float destroyY = -6f;
+    public float destroyY = -8.8f;
     public void SetMove(float moveSpeed, float delay)
     {
         speed = moveSpeed;

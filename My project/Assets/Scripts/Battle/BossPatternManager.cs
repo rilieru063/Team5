@@ -37,8 +37,8 @@ public class BossPatternManager : MonoBehaviour
     // PlayerDamage
     [Header("プレイヤーへのダメージ")]
     [SerializeField] private int tutorialBossDamage = 20;
-    [SerializeField] private int stage1BossDamage = 2;
-    [SerializeField] private int stage2BossDamage = 3;
+    [SerializeField] private int stage1BossDamage = 3;
+    [SerializeField] private int stage2BossDamage = 9;
 
     [Header("2面ボス攻撃後の残留時間")]
     [SerializeField] private float stage2Pattern2StayTime = 1.0f;
@@ -46,7 +46,7 @@ public class BossPatternManager : MonoBehaviour
 
     [Header("3面ボス攻撃ダメージ")]
     [SerializeField] private int stage3BalloonDamage = 5;
-    [SerializeField] private int stage3BombDamage = 10;
+    [SerializeField] private int stage3BombDamage = 30;
     [SerializeField] private int stage3BallDamage = 5;
     [SerializeField] private int stage3MissileDamage = 25;
 
@@ -192,13 +192,13 @@ public class BossPatternManager : MonoBehaviour
                 yield break;
             }
 
-            if (DebugMode.Instance.win == true)
-            {
-                DebugMode.Instance.win = false;
-                StartCoroutine(BossDefeated());
+            //if (DebugMode.Instance.win == true)
+            //{
+            //    DebugMode.Instance.win = false;
+            //    StartCoroutine(BossDefeated());
 
-                yield break;
-            }
+            //    yield break;
+            //}
         }
     }
 
@@ -215,7 +215,7 @@ public class BossPatternManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 if (dropSpawner != null)
-                { dropSpawner.SpawnDrop(3.5f,0f); }
+                { dropSpawner.SpawnDrop(0.75f,0f); }
 
                 // 次の落下まで
                 yield return new WaitForSeconds(0.05f);
